@@ -1,0 +1,24 @@
+version: "3.9"
+services:
+  audiobookshelf:
+    container_name: Audiobookshelf
+    image: advplyr/audiobookshelf
+    healthcheck:
+     test: wget --no-verbose --tries=1 --spider http://localhost || exit 1
+    mem_limit: 4g
+    cpu_shares: 768
+    security_opt:
+      - no-new-privileges:true
+    restart: on-failure:5
+    ports:
+      - 13378:80
+    volumes:
+      - /volume1/Workshop/docker/audiobookshelf:/config:rw
+      - /volume1/Workshop/docker/audiobookshelf/metadata:/metadata:rw
+      - ${AUDIOBOOKS}:/audiobooks:rw
+      - ${EBOOKS}:/ebooks:rw
+      - ${COMICS}:/comics:rw
+      - ${PODCASTS}:/podcasts:rw
+    environment:
+      PUID: 1026
+      PGID: 100
