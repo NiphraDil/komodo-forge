@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+  freshrss:
+    image: ghcr.io/linuxserver/freshrss:latest
+    container_name: FreshRSS
+    hostname: freshrss
+    mem_limit: 2g
+    cpu_shares: 1024
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: curl -f http://localhost:80/ || exit 1
+    ports:
+      - 9009:80
+    volumes:
+      - /volume1/Workshop/docker/freshrss:/config:rw
+    environment:
+      TZ: Europe/Amsterdam
+      PUID: 1026
+      PGID: 100
+    restart: on-failure:5
