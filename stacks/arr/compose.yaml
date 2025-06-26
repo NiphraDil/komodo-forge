@@ -1,0 +1,115 @@
+services:
+
+ bazarr:
+    image: ghcr.io/linuxserver/bazarr:latest
+    container_name: BAZARR-SYNOLOGY
+    healthcheck:
+     test: curl -f http://localhost:6767/ || exit 1
+    restart: on-failure:5
+    security_opt:
+      - no-new-privileges:false
+    volumes:
+      - /volume1/Workshop/docker/bazarr:/config:rw
+      - ${MOVIES}:/movies:rw
+      - ${SERIES}:/tv:rw
+    environment:
+      TZ: Europe/Amsterdam
+      PGID: 100
+      PUID: 1026
+    ports:
+      - 6767:6767      
+ byparr:
+        image: 'ghcr.io/thephaseless/byparr:latest'
+        ports:
+            - '8191:8191'
+ lidarr:
+    image: blampe/lidarr:latest
+    container_name: LIDARR-SYNOLOGY
+    healthcheck:
+     test: curl -f http://localhost:8686/ || exit 1
+    restart: on-failure:5
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - ${MUSIC}:/music:rw
+      - ${DOWNLOADS}:/downloads:rw
+      - /volume1/Workshop/docker/lidarr/config:/config:rw
+      - /volume1/Workshop/docker/lidarr/custom-services.d:/custom-services.d:rw
+      - /volume1/Workshop/docker/lidarr/custom-cont-init.d:/custom-cont-init.d:rw
+    environment:
+      TZ: Europe/Amsterdam
+      PGID: 100
+      PUID: 1026
+    ports:
+      - 8686:8686
+ prowlarr:
+    image: ghcr.io/linuxserver/prowlarr:latest
+    container_name: PROWLARR-SYNOLOGY
+    healthcheck:
+     test: curl -f http://localhost:9696/ || exit 1
+    restart: on-failure:5
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - /volume1/Workshop/docker/prowlarr:/config:rw 
+    environment:
+      TZ: Europe/Amsterdam
+      PGID: 100
+      PUID: 1026
+    ports:
+      - 9696:9696
+ radarr:
+    image: ghcr.io/linuxserver/radarr:latest
+    container_name: RADARR-SYNOLOGY
+    healthcheck:
+     test: curl -f http://localhost:7878/ || exit 1
+    restart: on-failure:5
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - ${MOVIES}:/movies:rw
+      - ${DOWNLOADS}:/downloads:rw
+      - /volume1/Workshop/docker/radarr/config:/config:rw 
+    environment:
+      TZ: Europe/Amsterdam
+      PGID: 100
+      PUID: 1026
+    ports:
+      - 7878:7878
+ readarr:
+    image: ghcr.io/linuxserver/readarr:nightly
+    container_name: READARR-SYNOLOGY
+    healthcheck:
+     test: curl -f http://localhost:8787/ || exit 1
+    restart: on-failure:5
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - ${AUDIOBOOKS}:/audiobooks:rw
+      - ${EBOOKS}:/ebooks:rw
+      - ${DOWNLOADS}:/downloads:rw
+      - /volume1/Workshop/docker/readarr/config:/config:rw 
+    environment:
+      TZ: Europe/Amsterdam
+      PGID: 100
+      PUID: 1026
+    ports:
+      - 8787:8787
+ sonarr:
+    image: ghcr.io/linuxserver/sonarr:latest
+    container_name: SONARR-SYNOLOGY
+    healthcheck:
+     test: curl -f http://localhost:8989/ || exit 1
+    restart: on-failure:5
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - ${SERIES}:/tv:rw
+      - ${DOWNLOADS}:/downloads:rw
+      - /volume1/Workshop/docker/sonarr/config:/config:rw 
+    environment:
+      TZ: Europe/Amsterdam
+      PGID: 100
+      PUID: 1026
+    ports:
+      - 8989:8989
