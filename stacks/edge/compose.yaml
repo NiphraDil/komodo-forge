@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  edge:
+    container_name: Microsoft-EDGE
+    image: ghcr.io/linuxserver/msedge:latest
+    shm_size: 5g
+    security_opt:
+      - no-new-privileges:false
+      - seccomp:unconfined
+    healthcheck:
+      test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/3000' || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 90s
+    environment:
+     CUSTOM_USER: niphradil
+     PASSWORD: Farwenya13!
+     TZ: Europe/Amsterdam
+     PUID: 1026
+     PGID: 100
+    volumes:
+      - /volume1/Workshop/docker/edge:/config:rw
+    ports:
+      - 3429:3000
+    restart: on-failure:5
