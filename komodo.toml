@@ -16,6 +16,19 @@ auto_prune = false
 
 ##
 
+[[stack]]
+name = "edge-browser"
+[stack.config]
+server = "ZouzouNAS2"
+poll_for_updates = true
+auto_update = true
+auto_update_all_services = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/edge"
+
+##
+
 [[builder]]
 name = "local"
 [builder.config]
