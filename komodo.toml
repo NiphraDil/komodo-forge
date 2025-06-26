@@ -1,1 +1,34 @@
-## Add resources to get started
+[[server]]
+name = "ZouzouNAS2"
+[server.config]
+address = "https://periphery:8120"
+enabled = true
+auto_prune = false
+
+##
+
+[[server]]
+name = "zouzoulinux"
+[server.config]
+address = "https://192.168.2.42:8120"
+enabled = true
+auto_prune = false
+
+##
+
+[[builder]]
+name = "local"
+[builder.config]
+type = "Server"
+params.server_id = "ZouzouNAS2"
+
+##
+
+[[resource_sync]]
+name = "komodo-forge"
+[resource_sync.config]
+repo = "NiphraDil/komodo-forge"
+git_account = "NiphraDil"
+resource_path = ["komodo.toml"]
+managed = true
+delete = true
