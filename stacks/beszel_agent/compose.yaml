@@ -11,6 +11,6 @@ services:
       # - /mnt/disk/.beszel:/extra-filesystems/sda1:ro
     environment:
       LISTEN: 45876
-      KEY: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGstaHjTsDJ0ZmQDne1pS++jqK4JbVoMnV/9GosuUn77"
+      KEY: ${BESZEL_KEY}
     devices:
       - /dev/dri:/dev/dri
