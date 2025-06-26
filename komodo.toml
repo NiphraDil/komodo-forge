@@ -17,6 +17,26 @@ auto_prune = false
 ##
 
 [[stack]]
+name = "arr"
+[stack.config]
+server = "ZouzouNAS2"
+poll_for_updates = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/arr"
+environment = """
+  # VARIABLE = value
+  MOVIES = [[MEDIA_MOVIES_NAS]]
+  SERIES = [[MEDIA_SERIES_NAS]]
+  DOWNLOADS = [[MEDIA_DOWNLOADS_NAS]]
+  MUSIC = [[MEDIA_MUSIC_NAS]]
+  EBOOKS = [[MEDIA_EBOOKS_NAS]]
+  AUDIOBOOKS = [[MEDIA_AUDIOBOOKS_NAS]]
+"""
+
+##
+
+[[stack]]
 name = "beszel_agent"
 [stack.config]
 server = "zouzoulinux"
