@@ -17,6 +17,21 @@ auto_prune = false
 ##
 
 [[stack]]
+name = "beszel_agent"
+[stack.config]
+server = "zouzoulinux"
+poll_for_updates = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/beszel_agent"
+environment = """
+# VARIABLE = value
+BESZEL_KEY = [[BESZEL_KEY_SECRET]]
+"""
+
+##
+
+[[stack]]
 name = "edge-browser"
 [stack.config]
 server = "ZouzouNAS2"
@@ -52,6 +67,19 @@ auto_update_all_services = true
 git_account = "NiphraDil"
 repo = "NiphraDil/komodo-forge"
 run_directory = "stacks/grocy"
+
+##
+
+[[stack]]
+name = "music_assistant"
+[stack.config]
+server = "zouzoulinux"
+poll_for_updates = true
+auto_update = true
+auto_update_all_services = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/music_assistant"
 
 ##
 
