@@ -124,6 +124,25 @@ SECRET_KEY_BASE = [[DAWARICH_SECRET]]
 ##
 
 [[stack]]
+name = "docmost"
+[stack.config]
+server = "ZouzouNAS2"
+poll_for_updates = true
+auto_update = true
+auto_update_all_services = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/docmost"
+environment = """
+  # VARIABLE = value
+APP_SECRET = [[DOCMOST_APP_SECRET]]
+SMTP_USER = [[DOCMOST_SMTP_USER]]
+SMTP_PASSWORD = [[DOCMOST_SMTP_PASSWORD]]
+"""
+
+##
+
+[[stack]]
 name = "edge-browser"
 [stack.config]
 server = "ZouzouNAS2"
@@ -159,6 +178,17 @@ auto_update_all_services = true
 git_account = "NiphraDil"
 repo = "NiphraDil/komodo-forge"
 run_directory = "stacks/grocy"
+
+##
+
+[[stack]]
+name = "homeassistant"
+[stack.config]
+server = "ZouzouNAS2"
+poll_for_updates = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/home_assistant"
 
 ##
 
