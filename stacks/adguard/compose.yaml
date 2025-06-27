@@ -1,0 +1,15 @@
+services:
+  adguard:
+    image: adguard/adguardhome
+    container_name: AdGuard
+    mem_limit: 2g
+    cpu_shares: 768
+    security_opt:
+      - no-new-privileges:true
+    restart: on-failure:5
+    network_mode: host
+    volumes:
+      - /volume1/Workshop/docker/adguard/config:/opt/adguardhome/conf:rw
+      - /volume1/Workshop/docker/adguard/data:/opt/adguardhome/work:rw
+    environment:
+      TZ: Europe/Amsterdam
