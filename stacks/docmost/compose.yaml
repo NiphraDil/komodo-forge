@@ -1,0 +1,67 @@
+services:
+  db:
+    image: postgres:17
+    container_name: Docmost-DB
+    hostname: docmost-db
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-d", "docmost", "-U", "docmostuser"]
+      timeout: 45s
+      interval: 10s
+      retries: 10
+    volumes:
+      - /volume1/Workshop/docker/docmost/db:/var/lib/postgresql/data:rw
+    environment:
+      POSTGRES_DB: docmost
+      POSTGRES_USER: docmostuser
+      POSTGRES_PASSWORD: docmostpass
+    restart: on-failure:5
+
+ 
+
+  docmost:
+    image: docmost/docmost:latest
+    container_name: Docmost
+    user: 0:0
+    healthcheck:
+      test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/3000' || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 90s
+    depends_on:
+      - db
+      - redis
+    environment:
+      APP_URL: https://wiki.zouzounet.nl
+      APP_SECRET: ${APP_SECRET}
+      DATABASE_URL: 'postgresql://docmostuser:docmostpass@db:5432/docmost?sslmode=disable'
+      REDIS_URL: 'redis://redis:6379'
+      MAIL_DRIVER: smtp
+      SMTP_HOST: smtp.gmail.com
+      SMTP_PORT: 587
+      SMTP_USERNAME: ${SMTP_USER}
+      SMTP_PASSWORD: ${SMTP_PASSWORD}
+      MAIL_FROM_ADDRESS: ${SMTP_USER}
+      MAIL_FROM_NAME: ZouzouNet Wiki
+    ports:
+      - 3199:3000
+    restart: on-failure:5
+    volumes:
+      - /volume1/Workshop/docker/docmost/data:/app/data/storage:rw
+
+  redis:
+    image: redis:7.2-alpine
+    container_name: Docmost-REDIS
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    user: 1026:100
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli ping || exit 1"]
+    volumes:
+      - /volume1/Workshop/docker/docmost/redis:/data:rw
+    environment:
+      TZ: Europe/Amsterdam
+    restart: on-failure:5
