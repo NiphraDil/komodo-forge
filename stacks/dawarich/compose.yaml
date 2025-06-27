@@ -1,0 +1,94 @@
+services:
+  dawarich_redis:
+    image: redis:7.0-alpine
+    container_name: dawarich_redis
+    command: redis-server
+    volumes:
+      - /volume1/Workshop/docker/dawarich/redis:/data:rw
+    restart: on-failure:5
+    healthcheck:
+      test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+      
+  dawarich_db:
+    image: postgis/postgis:14-3.5-alpine
+    container_name: dawarich_db
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d dawarich_development" ]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+    volumes:
+      - /volume1/Workshop/docker/dawarich/db_data:/var/lib/postgresql/data:rw
+      - /volume1/Workshop/docker/dawarich/db_shared:/var/shared:rw
+    environment:
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+    shm_size: 1G
+    restart: on-failure:5
+
+  dawarich_app:
+    image: freikin/dawarich:latest
+    container_name: dawarich_app
+    volumes:
+      - /volume1/Workshop/docker/dawarich/public:/var/app/public:rw
+      - /volume1/Workshop/docker/dawarich/watched:/var/app/tmp/imports/watched:rw
+    ports:
+      - 32568:3000
+    stdin_open: true
+    tty: true
+    entrypoint: web-entrypoint.sh
+    command: ['bin/rails', 'server', '-p', '3000', '-b', '::']
+    restart: on-failure
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "5"
+    healthcheck:
+      test: [ "CMD-SHELL", "wget -qO - http://127.0.0.1:3000/api/v1/health | grep -q '\"status\"\\s*:\\s*\"ok\"'" ]
+      interval: 10s
+      retries: 30
+      start_period: 30s
+      timeout: 10s
+    depends_on:
+      dawarich_db:
+        condition: service_started
+      dawarich_redis:
+        condition: service_started
+
+  dawarich_sidekiq:
+    image: freikin/dawarich:latest
+    container_name: dawarich_sidekiq
+    volumes:
+      - /volume1/Workshop/docker/dawarich/public:/var/app/public:rw
+      - /volume1/Workshop/docker/dawarich/watched:/var/app/tmp/imports/watched:rw
+    stdin_open: true
+    tty: true
+    entrypoint: sidekiq-entrypoint.sh
+    command: ['sidekiq']
+    restart: on-failure:5
+    env_file:
+      - stack.env
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "5"
+    healthcheck:
+      test: [ "CMD-SHELL", "bundle exec sidekiqmon processes | grep $${HOSTNAME}" ]
+      interval: 10s
+      retries: 30
+      start_period: 30s
+      timeout: 10s
+    depends_on:
+      dawarich_db:
+        condition: service_started
+      dawarich_redis:
+        condition: service_started
+      dawarich_app:
+        condition: service_started
