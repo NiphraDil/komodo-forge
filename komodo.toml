@@ -37,6 +37,24 @@ environment = """
 ##
 
 [[stack]]
+name = "audiobookshelf"
+[stack.config]
+server = "ZouzouNAS2"
+poll_for_updates = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/audiobookshelf"
+environment = """
+  # VARIABLE = value
+  AUDIOBOOKS = [[MEDIA_AUDIOBOOKS_NAS]]
+  EBOOKS = [[MEDIA_EBOOKS_NAS]]
+  COMICS = [[MEDIA_COMICS_NAS]]
+  PODCASTS = [[MEDIA_PODCASTS_NAS]]
+"""
+
+##
+
+[[stack]]
 name = "beszel_agent"
 [stack.config]
 server = "zouzoulinux"
@@ -87,6 +105,23 @@ auto_update_all_services = true
 git_account = "NiphraDil"
 repo = "NiphraDil/komodo-forge"
 run_directory = "stacks/grocy"
+
+##
+
+[[stack]]
+name = "karakeep"
+[stack.config]
+server = "ZouzouNAS2"
+poll_for_updates = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/karakeep"
+environment = """
+  # VARIABLE = value
+KARAKEEP_NEXTAUTH_SECRET = [[KARAKEEP_NEXTAUTH_SECRET]]
+KARAKEEP_MEILI_MASTER_KEY = [[KARAKEEP_MEILI_MASTER_KEY]]
+OPENAI_API_KEY = [[OPENAI_API_KEY]]
+"""
 
 ##
 
