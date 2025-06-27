@@ -1,0 +1,21 @@
+services:
+  beszel:
+    container_name: Beszel
+    image: henrygd/beszel:latest
+    volumes:
+      - /volume1/Workshop/docker/beszel:/beszel_data:rw
+    ports:
+      - 8095:8090
+    restart: on-failure:5
+
+  beszel-agent:
+    image: henrygd/beszel-agent
+    container_name: Beszel-Agent
+    network_mode: host
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      PORT: 45876
+      KEY: ${BESZEL_KEY}
+      FILESYSTEM: /dev/sda1
+    restart: on-failure:5
