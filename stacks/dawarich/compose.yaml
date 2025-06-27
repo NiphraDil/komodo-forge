@@ -72,8 +72,6 @@ services:
     entrypoint: sidekiq-entrypoint.sh
     command: ['sidekiq']
     restart: on-failure:5
-    env_file:
-      - stack.env
     logging:
       driver: "json-file"
       options:
