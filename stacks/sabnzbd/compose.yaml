@@ -1,0 +1,21 @@
+version: '3.9'
+services:
+ sabnzbd:
+    image: ghcr.io/linuxserver/sabnzbd:latest
+    container_name: SABnzbd-SYNOLOGY
+    healthcheck:
+     test: curl -f http://localhost:8080/ || exit 1
+    restart: on-failure:5
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - /volume1/Workshop/docker/sabnzbd/config:/config:rw
+      - /volume2/Warehouse/Downloads:/downloads:rw
+      - /volume2/Warehouse/Downloads/Usenet/incomplete:/incomplete-downloads:rw
+    environment:
+      TZ: Europe/Amsterdam
+      PGID: 100
+      PUID: 1026
+    ports:
+      - 8775:8080
+      - 9093:9090
