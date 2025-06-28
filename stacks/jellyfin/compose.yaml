@@ -1,0 +1,27 @@
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: Jellyfin
+    privileged: true
+
+    environment:
+      TZ: Europe/Amsterdam
+      PUID: 1000
+      PGID: 1000
+    devices:
+      - /dev/dri:/dev/dri
+    healthcheck:
+      test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8096' || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 90s
+    volumes:
+      - /var/lib/jellyfin/config:/config:rw
+      - /var/lib/jellyfin/cache:/cache:rw
+      - /var/lib/jellyfin/logs:/logs:rw
+      - ${MOVIES}:/media/movies:rw
+      - ${SERIES}:/media/series:rw
+      - ${MUSIC}:/music:rw
+    restart: always
+    network_mode: host

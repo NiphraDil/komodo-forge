@@ -1,0 +1,22 @@
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: Jellyfin
+    user: 1026:100
+    environment:
+      TZ: Europe/Amsterdam
+    healthcheck:
+      test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8096' || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 90s
+    volumes:
+      - /volume1/Workshop/docker/jellyfin/config:/config:rw
+      - /volume1/Workshop/docker/jellyfin/cache:/cache:rw
+      - /volume1/Workshop/docker/jellyfin/logs:/logs:rw
+      - ${MOVIES}:/media/movies:rw
+      - ${SERIES}:/media/series:rw
+      - ${MUSIC}:/music:rw
+    restart: always
+    network_mode: host
