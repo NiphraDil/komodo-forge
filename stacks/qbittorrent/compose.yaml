@@ -1,0 +1,27 @@
+services:
+  qbittorrent:
+    container_name: qBittorrent
+    image: ghcr.io/linuxserver/qbittorrent
+    healthcheck:
+     test: curl -f http://localhost:9865/ || exit 1
+    mem_limit: 6g
+    cpu_shares: 768
+
+    network_mode: host
+    tty: true
+    restart: on-failure:5
+    ports:
+      - 6881:6881
+      - 6881:6881/udp
+      - 9865:9865
+    volumes:
+      - /volume1/Workshop/docker/qbittorrent:/config:rw
+      - ${DOWNLOADS}:/downloads:rw
+      - ${MOVIES}:/movies:rw
+      - ${MUSIC}:/music:rw
+      - ${SERIES}:/series:rw
+    environment:
+     WEBUI_PORT: 9865
+     PUID: 1026
+     PGID: 100
+     TZ: Europe/Amsterdam
