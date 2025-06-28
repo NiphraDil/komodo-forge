@@ -1,0 +1,19 @@
+services:
+  guacamole:
+    container_name: Guacamole
+    image: jwetzell/guacamole
+    healthcheck:
+     test: curl -f http://localhost:8080/ || exit 1
+    mem_limit: 2g
+    cpu_shares: 1024
+    security_opt:
+      - no-new-privileges:false
+    restart: on-failure:5
+    ports:
+      - 8348:8080
+    volumes:
+      - /volume1/Workshop/docker/guacamole:/config:rw
+    environment:
+      PUID: 1026
+      PGID: 100
+      TZ: Europe/Amsterdam
