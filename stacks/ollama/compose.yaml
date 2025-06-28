@@ -1,0 +1,44 @@
+services:
+  webui:
+    container_name: OLLAMA-WEBUI
+    image: ghcr.io/open-webui/open-webui:0.6
+    volumes:
+      - /var/lib/ollama/webui:/app/backend/data:rw
+    environment:
+      OLLAMA_BASE_URL: http://ollama:11434
+      WEBUI_SECRET_KEY: ${OLLAMA_WEBUI_SECRET}
+    healthcheck:
+      test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8080' || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 90s
+    ports:
+      - 8271:8080
+    restart: on-failure
+    depends_on:
+      ollama:
+        condition: service_healthy
+
+  ollama:
+    container_name: OLLAMA
+    image: ollama/ollama:latest #For a NAS with an AMD CPU, use the following image ollama/ollama:rocm instead of ollama/ollama:latest
+    entrypoint: ["/usr/bin/bash", "/entrypoint.sh"]
+    volumes:
+      - /var/lib/ollama/data:/root/.ollama:rw
+      - /var/lib/ollama/entrypoint/entrypoint.sh:/entrypoint.sh
+    environment:
+      MODELS: llama3.2,qwen3:8b,deepseek-r1 #Check all the models at the following link https://ollama.com/library - You can separate models by commas like llama3.2,gemma2,mistral
+      OLLAMA_INSTALL_MODELS: llama3.2,qwen3:8b,deepseek-r1 #Check all the models at the following link https://ollama.com/library - You can separate models by commas like llama3.2,gemma2,mistral
+      OLLAMA_HOSTNAME: ai.zouzounet.nl
+    devices:
+      - /dev/dri:/dev/dri
+    ports:
+      - 11434:11434
+    healthcheck:
+      test: ["CMD", "ollama", "--version"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    restart: on-failure:5
