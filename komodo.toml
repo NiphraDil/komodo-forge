@@ -236,6 +236,23 @@ run_directory = "stacks/ittools"
 ##
 
 [[stack]]
+name = "jellyfin"
+[stack.config]
+server = "zouzoulinux"
+poll_for_updates = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/jellyfin"
+environment = """
+  # VARIABLE = value
+MOVIES = [[MEDIA_MOVIES_LINUX]]
+SERIES = [[MEDIA_SERIES_LINUX]]
+MUSIC = [[MEDIA_MUSIC_LINUX]]
+"""
+
+##
+
+[[stack]]
 name = "jellyseerr"
 [stack.config]
 server = "ZouzouNAS2"
@@ -305,6 +322,100 @@ SPOTIFY_SECRET = [[SPOTIFY_SECRET]]
 LASTFM_API_KEY = [[LASTFM_API_KEY]]
 LASTFM_SECRET = [[LASTFM_API_SECRET]]
 """
+
+##
+
+[[stack]]
+name = "ollama"
+[stack.config]
+server = "zouzoulinux"
+poll_for_updates = true
+auto_update = true
+auto_update_all_services = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/ollama"
+environment = """
+  # VARIABLE = value
+OLLAMA_WEBUI_SECRET = [[OLLAMA_WEBUI_SECRET]]
+"""
+
+##
+
+[[stack]]
+name = "portall"
+[stack.config]
+server = "zouzoulinux"
+poll_for_updates = true
+auto_update = true
+auto_update_all_services = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/portall"
+environment = """
+  # VARIABLE = value
+PORTALL_SECRET_KEY = [[PORTALL_SECRET_KEY]]
+"""
+
+##
+
+[[stack]]
+name = "qbittorrent"
+[stack.config]
+server = "ZouzouNAS2"
+poll_for_updates = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/qbittorrent"
+environment = """
+  # VARIABLE = value
+MOVIES = [[MEDIA_MOVIES_NAS]]
+DOWNLOADS = [[MEDIA_DOWNLOADS_NAS]]
+SERIES = [[MEDIA_SERIES_NAS]]
+MUSIC = [[MEDIA_MUSIC_NAS]]
+"""
+
+##
+
+[[stack]]
+name = "sabnzbd"
+[stack.config]
+server = "ZouzouNAS2"
+poll_for_updates = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/sabnzbd"
+
+##
+
+[[stack]]
+name = "stirlingpdf"
+[stack.config]
+server = "ZouzouNAS2"
+poll_for_updates = true
+auto_update = true
+auto_update_all_services = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/stirlingpdf"
+environment = """
+  # VARIABLE = value
+INITIAL_USER = [[STIRLING_INITIAL_USER]]
+INITIAL_PASSWORD = [[STIRLING_INITIAL_PASSWORD]]
+"""
+
+##
+
+[[stack]]
+name = "wyoming"
+[stack.config]
+server = "zouzoulinux"
+poll_for_updates = true
+auto_update = true
+auto_update_all_services = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/wyoming"
 
 ##
 
