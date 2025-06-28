@@ -1,0 +1,18 @@
+services:
+  homarr:
+    container_name: Homarr
+    image: ghcr.io/homarr-labs/homarr:latest
+    healthcheck:
+      test: ["CMD-SHELL", "nc -z 127.0.0.1 7575 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 90s
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /volume1/Workshop/docker/homarr:/appdata:rw
+    environment:
+       SECRET_ENCRYPTION_KEY: ${HOMARR_SECRET}
+    ports:
+      - 7575:7575
+    restart: on-failure:5
