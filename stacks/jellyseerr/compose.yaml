@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  jellyseerr:
+    image: fallenbagel/jellyseerr:latest
+    container_name: Jellyseerr
+    ports:
+    - 5056:5055
+    security_opt:
+      - no-new-privileges:false
+    volumes:
+      - /volume1/Workshop/docker/jellyseerr:/app/config:rw
+    environment:
+      TZ: Europe/Amsterdam
+      PUID: 1026
+      PGID: 100
+    restart: on-failure:5
