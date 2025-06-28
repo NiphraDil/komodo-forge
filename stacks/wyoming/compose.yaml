@@ -1,0 +1,27 @@
+services:
+  piper:
+    container_name: piper
+    image: rhasspy/wyoming-piper
+    ports:
+      - 10200:10200
+    volumes:
+      - /var/lib/piper/data:/data
+    command: --voice en_GB-alba-medium
+
+  whisper:
+   container_name: whisper
+   image: lscr.io/linuxserver/faster-whisper:latest
+   ports:
+     - 10300:10300
+   volumes:
+     - /var/lib/whisper/data:/data
+   environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+      - WHISPER_MODEL=base-int8
+      - WHISPER_BEAM=5 #optional
+      - WHISPER_LANG=en #optional  
+  
+    
+   # command: --model tiny-int8 --language en
