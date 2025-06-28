@@ -30,10 +30,10 @@ services:
     ports:
       - 8080:8080
     environment:
-      - SECRET_KEY = ${PORTALL_SECRET_KEY}
-      - DOCKER_HOST = tcp://socket-proxy:2375
-      - DOCKER_ENABLED = true
-      - HOST_IP = 192.168.2.42 # Defaults to 127.0.0.1
+      - SECRET_KEY=${PORTALL_SECRET_KEY}
+      - DOCKER_HOST=tcp://socket-proxy:2375
+      - DOCKER_ENABLED=true
+      - HOST_IP=192.168.2.42 # Defaults to 127.0.0.1
     volumes:
       - /var/lib/portall:/app/instance
     restart: unless-stopped
