@@ -182,6 +182,36 @@ run_directory = "stacks/grocy"
 ##
 
 [[stack]]
+name = "guacamole"
+[stack.config]
+server = "ZouzouNAS2"
+poll_for_updates = true
+auto_update = true
+auto_update_all_services = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/guacamole"
+
+##
+
+[[stack]]
+name = "homarr"
+[stack.config]
+server = "ZouzouNAS2"
+poll_for_updates = true
+auto_update = true
+auto_update_all_services = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/homarr"
+environment = """
+  # VARIABLE = value
+HOMARR_SECRET = [[HOMARR_SECRET_ENCRYPTION_KEY]]
+"""
+
+##
+
+[[stack]]
 name = "homeassistant"
 [stack.config]
 server = "ZouzouNAS2"
@@ -189,6 +219,32 @@ poll_for_updates = true
 git_account = "NiphraDil"
 repo = "NiphraDil/komodo-forge"
 run_directory = "stacks/home_assistant"
+
+##
+
+[[stack]]
+name = "ittools"
+[stack.config]
+server = "ZouzouNAS2"
+poll_for_updates = true
+auto_update = true
+auto_update_all_services = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/ittools"
+
+##
+
+[[stack]]
+name = "jellyseerr"
+[stack.config]
+server = "ZouzouNAS2"
+poll_for_updates = true
+auto_update = true
+auto_update_all_services = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/jellyseerr"
 
 ##
 
@@ -210,6 +266,16 @@ OPENAI_API_KEY = [[OPENAI_API_KEY]]
 ##
 
 [[stack]]
+name = "komodo-forge-template"
+template = true
+[stack.config]
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/"
+
+##
+
+[[stack]]
 name = "music_assistant"
 [stack.config]
 server = "zouzoulinux"
@@ -223,12 +289,22 @@ run_directory = "stacks/music_assistant"
 ##
 
 [[stack]]
-name = "template"
-template = true
+name = "navidrome"
 [stack.config]
+server = "ZouzouNAS2"
+poll_for_updates = true
+auto_update = true
+auto_update_all_services = true
 git_account = "NiphraDil"
 repo = "NiphraDil/komodo-forge"
-run_directory = "stacks/"
+run_directory = "stacks/navidrome"
+environment = """
+  # VARIABLE = value
+SPOTIFY_ID = [[SPOTIFY_ID]]
+SPOTIFY_SECRET = [[SPOTIFY_SECRET]]
+LASTFM_API_KEY = [[LASTFM_API_KEY]]
+LASTFM_SECRET = [[LASTFM_API_SECRET]]
+"""
 
 ##
 
