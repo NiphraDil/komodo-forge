@@ -1,0 +1,37 @@
+services:
+  stirling-pdf:
+    container_name: Stirling-PDF
+    image: docker.stirlingpdf.com/stirlingtools/stirling-pdf
+    mem_limit: 4g
+    cpu_shares: 1024
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8080' || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 90s
+    ports:
+      - 7890:8080
+    volumes:
+      - /volume1/Workshop/docker/stirling/data:/usr/share/tessdata:rw
+      - /volume1/Workshop/docker/stirling/config:/configs:rw
+      - /volume1/Workshop/docker/stirling/logs:/logs:rw
+    environment:
+     PUID: 1026
+     PGID: 100
+     DOCKER_ENABLE_SECURITY: true # or false
+     SECURITY_ENABLELOGIN: true #or false
+     SECURITY_INITIALLOGIN_USERNAME: ${INITIAL_USER}
+     SECURITY_INITIALLOGIN_PASSWORD: ${INITIAL_PASSWORD}   
+     INSTALL_BOOK_AND_ADVANCED_HTML_OPS: false #or true
+     SECURITY_CSRFDISABLED: true #or false
+     SYSTEM_DEFAULTLOCALE: en_US # or fr_FR or de_DE
+     UI_APPNAME: ZouzouPDF
+     UI_HOMEDESCRIPTION: ZouzouFamily Advanced PDF Services
+     UI_APPNAMENAVBAR: ZouzouPDF
+     SYSTEM_MAXFILESIZE: 5000 # Set the maximum file size in MB
+     METRICS_ENABLED: true
+     SYSTEM_GOOGLEVISIBILITY: false # or true
+    restart: on-failure:5
