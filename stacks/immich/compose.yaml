@@ -29,6 +29,8 @@ services:
       - POSTGRES_PASSWORD=immichpw
       # Uncomment the DB_STORAGE_TYPE: 'HDD' var if your database isn't stored on SSDs
       # DB_STORAGE_TYPE: 'HDD'
+    env_file:
+      - .env  
     restart: on-failure:5
 
   immich-server:
@@ -42,6 +44,8 @@ services:
       - 8212:2283
     volumes:
       - /volume1/Workshop/docker/immich/upload:/usr/src/app/upload:rw
+    env_file:
+      - .env
     restart: on-failure:5
     depends_on:
       immich-redis:
@@ -59,6 +63,8 @@ services:
     volumes:
       - /volume1/Workshop/docker/immich/upload:/usr/src/app/upload:rw
       - /volume1/Workshop/docker/immich/cache:/cache:rw
+    env_file:
+      - .env
     restart: on-failure:5
     depends_on:
       immich-db:
