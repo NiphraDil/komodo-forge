@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  navidrome:
+    container_name: Navidrome
+    image: deluan/navidrome:latest
+    mem_limit: 4g
+    cpu_shares: 1024
+    security_opt:
+      - no-new-privileges:true
+    restart: on-failure:5
+    ports:
+      - 4533:4533
+    volumes:
+      - /volume1/Workshop/docker/navidrome:/data:rw
+      - /volume2/Warehouse/Music:/music:rw
+    environment:
+      PUID: 1026
+      PGID: 100
+      ND_SPOTIFY_ID: ${SPOTIFY_ID}
+      ND_SPOTIFY_SECRET: ${SPOTIFY_SECRET}
+      ND_LASTFM_APIKEY: ${LASTFM_API_KEY}
+      ND_LASTFM_SECRET: ${LASTFM_SECRET}
