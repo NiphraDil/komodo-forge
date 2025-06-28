@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  ittols:
+    container_name: IT-TOOLS
+    image: corentinth/it-tools
+    healthcheck:
+     test: curl -f http://localhost:80/ || exit 1
+    mem_limit: 2g
+    cpu_shares: 768
+    security_opt:
+      - no-new-privileges:true
+    restart: on-failure:5
+    ports:
+      - 5545:80
