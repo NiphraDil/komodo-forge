@@ -223,6 +223,37 @@ run_directory = "stacks/home_assistant"
 ##
 
 [[stack]]
+name = "immich"
+[stack.config]
+server = "ZouzouNAS2"
+poll_for_updates = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/immich"
+environment = """
+  # VARIABLE = value
+NODE_ENV = production
+TZ = Europe/Amsterdam
+DB_HOSTNAME = immich-db
+DB_USERNAME = immichuser
+DB_PASSWORD = immichpw
+DB_DATABASE_NAME = immich
+REDIS_HOSTNAME = immich-redis
+LOG_LEVEL = log
+JWT_SECRET = xia7jNMRT50PgcShC0BTuFxTLPamoYnQO8OKH8jUff4iD0AdtbC8HTZp/Rv4LSdpV7kXbYTvxNrw24NzJJiag2nisYbUmEV8XbJEEboag98z+6KR5djhPPC4/oztoSJHOB2rpPXjv4VNwCAT0PvTKUo3gSY8rDja85DGugYqJ0c=
+DISABLE_REVERSE_GEOCODING = false
+REVERSE_GEOCODING_PRECISION = 3
+PUBLIC_LOGIN_PAGE_MESSAGE = "Welcome to ZouzouPhotos"
+IMMICH_WEB_URL = http://immich-web:3000
+IMMICH_SERVER_URL = http://immich-server:3001
+IMMICH_MACHINE_LEARNING_URL = http://immich-machine-learning:3003
+DB_DATA_LOCATION = /volume1/Workshop/docker/immich/db
+POSTGRES_INITDB_ARGS = '--data-checksums'
+"""
+
+##
+
+[[stack]]
 name = "ittools"
 [stack.config]
 server = "ZouzouNAS2"
