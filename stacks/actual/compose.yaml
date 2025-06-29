@@ -1,0 +1,17 @@
+services:
+  actual_server:
+    image: actualbudget/actual-server:latest
+    container_name: Actual
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/5006' || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 90s
+    ports:
+      - 8304:5006
+    volumes:
+      - /var/lib/actual:/data:rw
+    restart: on-failure:5
