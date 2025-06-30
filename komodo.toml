@@ -1,7 +1,7 @@
 [[server]]
 name = "ZouzouNAS2"
 [server.config]
-address = "https://periphery:8120"
+address = "https://192.168.2.117:8120"
 enabled = true
 auto_prune = false
 
@@ -323,6 +323,18 @@ KARAKEEP_NEXTAUTH_SECRET = [[KARAKEEP_NEXTAUTH_SECRET]]
 KARAKEEP_MEILI_MASTER_KEY = [[KARAKEEP_MEILI_MASTER_KEY]]
 OPENAI_API_KEY = [[OPENAI_API_KEY]]
 """
+
+##
+
+[[stack]]
+name = "komodo"
+[stack.config]
+server = "ZouzouNAS2"
+poll_for_updates = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/komodo_core"
+additional_env_files = ["./compose.env"]
 
 ##
 
