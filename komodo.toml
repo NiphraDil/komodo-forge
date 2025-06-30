@@ -17,6 +17,19 @@ auto_prune = false
 ##
 
 [[stack]]
+name = "actual_budget"
+[stack.config]
+server = "zouzoulinux"
+poll_for_updates = true
+auto_update = true
+auto_update_all_services = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/actual"
+
+##
+
+[[stack]]
 name = "adguard"
 [stack.config]
 server = "ZouzouNAS2"
