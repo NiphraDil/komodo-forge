@@ -1,7 +1,7 @@
 ---
 services:
   duplicati:
-    image: lscr.io/linuxserver/duplicati:latest
+    image: duplicati/duplicati:latest
     container_name: duplicati
     environment:
       - PUID=1000
