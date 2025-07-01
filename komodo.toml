@@ -156,6 +156,23 @@ SMTP_PASSWORD = [[DOCMOST_SMTP_PASSWORD]]
 ##
 
 [[stack]]
+name = "duplicati"
+[stack.config]
+server = "zouzoulinux"
+poll_for_updates = true
+auto_update = true
+auto_update_all_services = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/duplicati"
+environment = """
+  # VARIABLE = value
+DUPLICATI_ENCRYPTION_KEY = [[DUPLICATI_ENCRYPTION_KEY]]
+"""
+
+##
+
+[[stack]]
 name = "edge-browser"
 [stack.config]
 server = "ZouzouNAS2"
