@@ -110,6 +110,24 @@ BESZEL_KEY = [[BESZEL_KEY_SECRET]]
 ##
 
 [[stack]]
+name = "brave"
+[stack.config]
+server = "zouzoulinux"
+poll_for_updates = true
+auto_update = true
+auto_update_all_services = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/brave"
+environment = """
+  # VARIABLE = value
+BRAVE_USER = [[BRAVE_USER]]
+BRAVE_PASSWORD = [[BRAVE_PASSWORD]]
+"""
+
+##
+
+[[stack]]
 name = "dawarich"
 [stack.config]
 server = "ZouzouNAS2"
