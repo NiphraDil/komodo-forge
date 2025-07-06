@@ -128,6 +128,21 @@ BRAVE_PASSWORD = [[BRAVE_PASSWORD]]
 ##
 
 [[stack]]
+name = "cloudflare_ddns"
+[stack.config]
+server = "ZouzouNAS2"
+poll_for_updates = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/cloudflare_ddns"
+environment = """
+  # VARIABLE = value
+CLOUDFLARE_API_TOKEN = [[CLOUDFLARE_API_TOKEN]]
+"""
+
+##
+
+[[stack]]
 name = "dawarich"
 [stack.config]
 server = "ZouzouNAS2"
