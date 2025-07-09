@@ -57,7 +57,7 @@ services:
     image: ghcr.io/immich-app/immich-machine-learning:release
     container_name: Immich-LEARNING
     hostname: immich-machine-learning
-    user: 1026:100
+    #user: 1026:100
     privileged: true
     #security_opt:
       #- no-new-privileges:true
