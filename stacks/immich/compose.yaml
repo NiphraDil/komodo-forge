@@ -58,8 +58,9 @@ services:
     container_name: Immich-LEARNING
     hostname: immich-machine-learning
     user: 1026:100
-    security_opt:
-      - no-new-privileges:true
+    privileged: true
+    #security_opt:
+      #- no-new-privileges:true
     volumes:
       - /volume1/Workshop/docker/immich/upload:/usr/src/app/upload:rw
       - /volume1/Workshop/docker/immich/cache:/cache:rw
