@@ -1,9 +1,0 @@
-services:
-    deezer-downloader:
-        image: 'kmille2/deezer-downloader:latest'
-        environment:
-            - DEEZER_COOKIE_ARL=2528a00e39377f95a7b048781ff4a9f3acd8f19db10b578a97dab3ff04d517f91ea45d2c259585822947489d83a53842ee0ac0c375b40d1330f283f3ea7311de39e6877569240413966b8770137aa93a9b4a2ebda4c649bfe6078cc4ba4a4c17
-        volumes:
-            - /mnt/warehouse/incomplete/:/mnt/deezer-downloader
-        ports:
-            - '5000:5000'

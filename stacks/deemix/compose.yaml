@@ -1,0 +1,10 @@
+services:
+    bambanah:
+        container_name: Deemix
+        image: 'ghcr.io/bambanah/deemix:latest'
+        ports:
+            - '6595:6595'
+        volumes:
+            - /var/lib/deemix:/config
+            - /mnt/warehouse/incomplete:/downloads
+        
