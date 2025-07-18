@@ -170,6 +170,19 @@ SECRET_KEY_BASE = [[DAWARICH_SECRET]]
 ##
 
 [[stack]]
+name = "deemix"
+[stack.config]
+server = "zouzoulinux"
+poll_for_updates = true
+auto_update = true
+auto_update_all_services = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/deemix"
+
+##
+
+[[stack]]
 name = "docmost"
 [stack.config]
 server = "ZouzouNAS2"
