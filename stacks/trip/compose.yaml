@@ -1,0 +1,19 @@
+services:
+ trip:
+    image: ghcr.io/itskovacs/trip:1
+    container_name: Trip
+    healthcheck:
+      test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8000' || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 90s  
+    user: 0:0
+    ports:
+      - 8534:8000
+    volumes:
+      - /var/lib/trip/:/app/storage:rw
+    environment:
+     REGISTER_ENABLE: true #Type in false instead of true after the first user registration.
+    command: ["fastapi", "run", "/app/trip/main.py", "--host", "0.0.0.0"]
+    restart: on-failure:5
