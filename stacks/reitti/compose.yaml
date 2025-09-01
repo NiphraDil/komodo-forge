@@ -20,7 +20,7 @@ services:
       POSTGRES_PASSWORD: ${REITTI_PASSWORD}
       POSTGRES_DB: reittidb
     volumes:
-      - postgis-data:/var/lib/postgresql/data
+      - /var/lib/reitti/postgis:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U reitti -d reittidb"]
       interval: 10s
@@ -32,7 +32,7 @@ services:
       RABBITMQ_DEFAULT_USER: ${REITTI_USER}
       RABBITMQ_DEFAULT_PASS: ${REITTI_PASSWORD}
     volumes:
-      - rabbitmq-data:/var/lib/rabbitmq
+      - /var/lib/reitti/rabbitmq:/var/lib/rabbitmq
     healthcheck:
       test: ["CMD", "rabbitmq-diagnostics", "check_port_connectivity"]
       interval: 30s
@@ -41,7 +41,7 @@ services:
   redis:
     image: redis:7-alpine
     volumes:
-      - redis-data:/data
+      - /var/lib/reitti/redis:/data
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 10s
@@ -53,9 +53,4 @@ services:
       - UPDATE_STRATEGY=PARALLEL
       - COUNTRY_CODE=nl #set your main country code here to save space or drop this line to fetch the whole index.
     volumes:
-      - photon-data:/photon/photon_data
-volumes:
-  postgis-data: /var/lib/reitti/postgis
-  rabbitmq-data: /var/lib/reitti/rabbitmq
-  redis-data: /var/lib/reitti/redis
-  photon-data: /var/lib/reitti/photon
+      - /var/lib/reitti/photon:/photon/photon_data
