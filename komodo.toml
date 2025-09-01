@@ -530,6 +530,19 @@ INITIAL_PASSWORD = [[STIRLING_INITIAL_PASSWORD]]
 ##
 
 [[stack]]
+name = "trip"
+[stack.config]
+server = "zouzoulinux"
+poll_for_updates = true
+auto_update = true
+auto_update_all_services = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/trip"
+
+##
+
+[[stack]]
 name = "wyoming"
 [stack.config]
 server = "zouzoulinux"
