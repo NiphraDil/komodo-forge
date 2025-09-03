@@ -499,6 +499,22 @@ MUSIC = [[MEDIA_MUSIC_NAS]]
 ##
 
 [[stack]]
+name = "reitti"
+[stack.config]
+server = "zouzoulinux"
+poll_for_updates = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/reitti"
+environment = """
+  # VARIABLE = value
+REITTI_USER = [[REITTI_USER]]
+REITTI_PASSWORD = [[REITTI_PASSWORD]]
+"""
+
+##
+
+[[stack]]
 name = "sabnzbd"
 [stack.config]
 server = "ZouzouNAS2"
