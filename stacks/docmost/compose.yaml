@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres:17
+    image: postgres:16-alpine
     container_name: Docmost-DB
     hostname: docmost-db
     security_opt:
