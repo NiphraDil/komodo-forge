@@ -51,6 +51,6 @@ services:
     image: rtuszik/photon-docker:latest
     environment:
       - UPDATE_STRATEGY=PARALLEL
-      - COUNTRY_CODE=nl #set your main country code here to save space or drop this line to fetch the whole index.
+      - REGION=nl #set your main country code here to save space or drop this line to fetch the whole index.
     volumes:
       - /var/lib/reitti/photon:/photon/photon_data
