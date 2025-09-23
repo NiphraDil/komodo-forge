@@ -15,4 +15,4 @@ services:
       LISTEN: 45876
       KEY: ${BESZEL_KEY}
     devices:
-      - /dev/dri/card1:/dev/dri/card1
+      - /dev/dri:/dev/dri
