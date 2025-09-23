@@ -4,6 +4,8 @@ services:
     container_name: "beszel-agent"
     restart: unless-stopped
     network_mode: host
+    cap_add:
+    - CAP_PERFMON
     privileged: true
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
@@ -13,4 +15,4 @@ services:
       LISTEN: 45876
       KEY: ${BESZEL_KEY}
     devices:
-      - /dev/dri:/dev/dri
+      - /dev/dri/card1:/dev/dri/card1
