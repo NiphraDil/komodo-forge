@@ -23,7 +23,7 @@ services:
         ports:
             - '8191:8191'
  lidarr:
-    image: blampe/lidarr:latest
+    image: ghcr.io/linuxserver/lidarr:latest
     container_name: LIDARR-SYNOLOGY
     healthcheck:
      test: curl -f http://localhost:8686/ || exit 1
