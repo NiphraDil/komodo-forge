@@ -143,6 +143,17 @@ CLOUDFLARE_API_TOKEN = [[CLOUDFLARE_API_TOKEN]]
 ##
 
 [[stack]]
+name = "copyparty"
+[stack.config]
+server = "zouzoulinux"
+poll_for_updates = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/copyparty"
+
+##
+
+[[stack]]
 name = "dawarich"
 [stack.config]
 server = "ZouzouNAS2"
@@ -580,6 +591,18 @@ name = "Stage 1"
 enabled = true
 executions = [
   { execution.type = "GlobalAutoUpdate", execution.params = {}, enabled = true }
+]
+
+##
+
+[[procedure]]
+name = "restart on plan"
+
+[[procedure.config.stage]]
+name = "Stage 1"
+enabled = false
+executions = [
+  { execution.type = "RestartStack", execution.params.stack = "freshrss", execution.params.services = [], enabled = true }
 ]
 
 ##
