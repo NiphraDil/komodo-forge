@@ -4,4 +4,4 @@ services:
     ports:
       - "5800:5800"
     volumes:
-      - "var/lib/thunderbird:/config:rw"
+      - "/var/lib/thunderbird:/config:rw"
