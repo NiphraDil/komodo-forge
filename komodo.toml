@@ -555,6 +555,17 @@ INITIAL_PASSWORD = [[STIRLING_INITIAL_PASSWORD]]
 ##
 
 [[stack]]
+name = "thunderbird"
+[stack.config]
+server = "zouzoulinux"
+auto_pull = false
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/thunderbird"
+
+##
+
+[[stack]]
 name = "trip"
 [stack.config]
 server = "zouzoulinux"
