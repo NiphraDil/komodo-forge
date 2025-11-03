@@ -14,5 +14,6 @@ services:
     environment:
       LISTEN: 45876
       KEY: ${BESZEL_KEY}
+      INTEL_GPU_DEVICE: drm:/dev/dri/card1
     devices:
       - "/dev/dri:/dev/dri"
