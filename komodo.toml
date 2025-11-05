@@ -99,12 +99,14 @@ name = "beszel_agent"
 [stack.config]
 server = "zouzoulinux"
 poll_for_updates = true
+auto_update = true
 git_account = "NiphraDil"
 repo = "NiphraDil/komodo-forge"
 run_directory = "stacks/beszel_agent"
 environment = """
 # VARIABLE = value
 BESZEL_KEY = [[BESZEL_KEY_SECRET]]
+INTEL_GPU_DEVICE = drm:/dev/dri/card1
 """
 
 ##
