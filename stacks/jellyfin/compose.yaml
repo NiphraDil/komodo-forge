@@ -18,6 +18,7 @@ services:
       start_period: 90s
     volumes:
       - /var/lib/jellyfin/config:/config:rw
+      - /var/lib/jellyfin/transcodes:/transcodes:rw
       - /var/lib/jellyfin/cache:/cache:rw
       - /var/lib/jellyfin/logs:/logs:rw
       - ${MOVIES}:/media/movies:rw
