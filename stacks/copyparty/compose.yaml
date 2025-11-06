@@ -9,7 +9,7 @@ services:
     volumes:
       - /var/lib/copyparty/:/cfg:z
       - /mnt/warehouse/copyparty:/w:z
-      - /:/zouzoulinux_root
+      - /:/w/zouzoulinux_root
 
     environment:
       LD_PRELOAD: /usr/lib/libmimalloc-secure.so.2
