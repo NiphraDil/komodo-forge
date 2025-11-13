@@ -6,7 +6,9 @@ services:
       - 10200:10200
     volumes:
       - /var/lib/piper/data:/data
-    command: --voice en_GB-alba-medium
+    command: 
+      - --voice en_GB-alba-medium
+      - --data-dir /data
 
   whisper:
    container_name: whisper
