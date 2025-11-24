@@ -17,3 +17,4 @@ services:
     ports:
       - 8200:8200
     restart: unless-stopped
+    test: 123
