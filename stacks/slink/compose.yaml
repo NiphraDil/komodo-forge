@@ -20,9 +20,9 @@ services:
       - USER_PASSWORD_REQUIREMENTS=15 # bitmask of requirements
 
       # Automatically create first admin user (optional - remove after initial setup)
-      # - ADMIN_USERNAME=admin
-      # - ADMIN_EMAIL=admin@your-domain.com
-      # - ADMIN_PASSWORD=YourSecurePassword123
+      - ADMIN_USERNAME=niphradil
+      - ADMIN_EMAIL=niphradil@gmail.com
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
 
       # Maximum image size allowed to be uploaded (no more than 50M)
       - IMAGE_MAX_SIZE=50M
