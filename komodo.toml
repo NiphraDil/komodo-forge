@@ -539,6 +539,16 @@ run_directory = "stacks/sabnzbd"
 ##
 
 [[stack]]
+name = "slink"
+[stack.config]
+server = "zouzoulinux"
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/slink"
+
+##
+
+[[stack]]
 name = "stirlingpdf"
 [stack.config]
 server = "ZouzouNAS2"
