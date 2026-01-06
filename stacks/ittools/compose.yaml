@@ -11,4 +11,4 @@ services:
       - no-new-privileges:true
     restart: on-failure:5
     ports:
-      - 5545:80
+      - 5545:8080
