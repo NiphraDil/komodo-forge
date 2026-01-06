@@ -4,7 +4,7 @@ services:
     container_name: IT-TOOLS
     image: sharevb/it-tools
     healthcheck:
-     test: curl -f http://localhost:80/ || exit 1
+     test: curl -f http://localhost:8080/ || exit 1
     mem_limit: 2g
     cpu_shares: 768
     security_opt:
