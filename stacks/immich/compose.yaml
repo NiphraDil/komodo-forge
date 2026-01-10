@@ -12,7 +12,7 @@ services:
       - TZ=Europe/Amsterdam
     volumes:
       - /volume1/Workshop/docker/immich/redis:/data:rw
-    restart: on-failure:5
+    restart: always
 
   immich-db:
     image: ghcr.io/immich-app/postgres:16-vectorchord0.3.0-pgvectors0.2.0
@@ -31,7 +31,7 @@ services:
       # DB_STORAGE_TYPE: 'HDD'
     env_file:
       - .env  
-    restart: on-failure:5
+    restart: always
 
   immich-server:
     image: ghcr.io/immich-app/immich-server:release
@@ -46,7 +46,7 @@ services:
       - /volume1/Workshop/docker/immich/upload:/usr/src/app/upload:rw
     env_file:
       - .env
-    restart: on-failure:5
+    restart: always
     depends_on:
       immich-redis:
         condition: service_healthy
@@ -66,7 +66,7 @@ services:
       - /volume1/Workshop/docker/immich/cache:/cache:rw
     env_file:
       - .env
-    restart: on-failure:5
+    restart: always
     depends_on:
       immich-db:
         condition: service_started

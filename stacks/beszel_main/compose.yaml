@@ -6,7 +6,7 @@ services:
       - /volume1/Workshop/docker/beszel:/beszel_data:rw
     ports:
       - 8095:8090
-    restart: on-failure:5
+    restart: always
 
   beszel-agent:
     image: henrygd/beszel-agent
@@ -18,4 +18,4 @@ services:
       PORT: 45876
       KEY: ${BESZEL_KEY}
       FILESYSTEM: /dev/sda1
-    restart: on-failure:5
+    restart: always

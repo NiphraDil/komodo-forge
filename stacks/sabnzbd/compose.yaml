@@ -5,7 +5,7 @@ services:
     container_name: SABnzbd-SYNOLOGY
     healthcheck:
      test: curl -f http://localhost:8080/ || exit 1
-    restart: on-failure:5
+    restart: always
     security_opt:
       - no-new-privileges:true
     volumes:

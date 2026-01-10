@@ -9,7 +9,7 @@ services:
 
     network_mode: host
     tty: true
-    restart: on-failure:5
+    restart: always
     ports:
       - 6881:6881
       - 6881:6881/udp

@@ -16,7 +16,7 @@ services:
       POSTGRES_DB: docmost
       POSTGRES_USER: docmostuser
       POSTGRES_PASSWORD: docmostpass
-    restart: on-failure:5
+    restart: always
 
  
 
@@ -47,7 +47,7 @@ services:
       MAIL_FROM_NAME: ZouzouNet Wiki
     ports:
       - 3199:3000
-    restart: on-failure:5
+    restart: always
     volumes:
       - /volume1/Workshop/docker/docmost/data:/app/data/storage:rw
 
@@ -60,4 +60,4 @@ services:
       - /volume1/Workshop/docker/docmost/redis:/data:rw
     environment:
       TZ: Europe/Amsterdam
-    restart: on-failure:5
+    restart: always

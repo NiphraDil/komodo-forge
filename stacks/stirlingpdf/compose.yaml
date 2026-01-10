@@ -34,4 +34,4 @@ services:
      SYSTEM_MAXFILESIZE: 5000 # Set the maximum file size in MB
      METRICS_ENABLED: true
      SYSTEM_GOOGLEVISIBILITY: false # or true
-    restart: on-failure:5
+    restart: no

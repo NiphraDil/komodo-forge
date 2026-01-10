@@ -23,4 +23,4 @@ services:
       - /volume1/Workshop/docker/edge:/config:rw
     ports:
       - 3429:3000
-    restart: on-failure:5
+    restart: no

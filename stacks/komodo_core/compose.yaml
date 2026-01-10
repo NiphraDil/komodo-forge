@@ -13,7 +13,7 @@ services:
     labels:
       komodo.skip: # Prevent Komodo from stopping with StopAllContainers
     command: --quiet --wiredTigerCacheSizeGB 0.25
-    restart: unless-stopped
+    restart: always
     # ports:
     #   - 27017:27017
     volumes:
@@ -27,7 +27,7 @@ services:
     image: ghcr.io/moghtech/komodo-core:${COMPOSE_KOMODO_IMAGE_TAG}
     labels:
       komodo.skip: # Prevent Komodo from stopping with StopAllContainers
-    restart: unless-stopped
+    restart: always
     depends_on:
       - mongo
     ports:

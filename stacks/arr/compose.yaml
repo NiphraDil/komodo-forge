@@ -5,7 +5,7 @@ services:
     container_name: BAZARR-SYNOLOGY
     healthcheck:
      test: curl -f http://localhost:6767/ || exit 1
-    restart: on-failure:5
+    restart: always
     security_opt:
       - no-new-privileges:false
     volumes:
@@ -27,7 +27,7 @@ services:
     container_name: LIDARR-SYNOLOGY
     healthcheck:
      test: curl -f http://localhost:8686/ || exit 1
-    restart: on-failure:5
+    restart: always
     security_opt:
       - no-new-privileges:true
     volumes:
@@ -47,7 +47,7 @@ services:
     container_name: PROWLARR-SYNOLOGY
     healthcheck:
      test: curl -f http://localhost:9696/ || exit 1
-    restart: on-failure:5
+    restart: always
     security_opt:
       - no-new-privileges:true
     volumes:
@@ -63,7 +63,7 @@ services:
     container_name: RADARR-SYNOLOGY
     healthcheck:
      test: curl -f http://localhost:7878/ || exit 1
-    restart: on-failure:5
+    restart: always
     security_opt:
       - no-new-privileges:true
     volumes:
@@ -81,7 +81,7 @@ services:
     container_name: READARR-SYNOLOGY
     healthcheck:
      test: curl -f http://localhost:8787/ || exit 1
-    restart: on-failure:5
+    restart: always
     security_opt:
       - no-new-privileges:true
     volumes:
@@ -100,7 +100,7 @@ services:
     container_name: SONARR-SYNOLOGY
     healthcheck:
      test: curl -f http://localhost:8989/ || exit 1
-    restart: on-failure:5
+    restart: always
     security_opt:
       - no-new-privileges:true
     volumes:

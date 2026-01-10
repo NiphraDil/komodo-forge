@@ -18,4 +18,4 @@ services:
       TZ: Europe/Amsterdam
       PUID: 1026
       PGID: 100
-    restart: on-failure:5
+    restart: always

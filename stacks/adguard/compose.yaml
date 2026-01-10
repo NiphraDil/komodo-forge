@@ -6,7 +6,7 @@ services:
     cpu_shares: 768
     security_opt:
       - no-new-privileges:true
-    restart: on-failure:5
+    restart: always
     network_mode: host
     volumes:
       - /volume1/Workshop/docker/adguard/config:/opt/adguardhome/conf:rw

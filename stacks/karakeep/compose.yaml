@@ -3,7 +3,7 @@ services:
   web:
     image: ghcr.io/karakeep-app/karakeep:release
     container_name: Karakeep-WEB
-    restart: on-failure:5
+    restart: always
     volumes:
       - /volume1/Workshop/docker/hoarder/data:/data:rw
     ports:
@@ -20,7 +20,7 @@ services:
   chrome:
     image: gcr.io/zenika-hub/alpine-chrome:100
     container_name: Karakeep-CHROME
-    restart: on-failure:5
+    restart: always
     command:
       - --no-sandbox
       - --disable-gpu

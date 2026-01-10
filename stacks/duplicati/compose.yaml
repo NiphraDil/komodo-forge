@@ -16,4 +16,4 @@ services:
       - /var/lib:/source
     ports:
       - 8200:8200
-    restart: unless-stopped
+    restart: no

@@ -5,7 +5,7 @@ services:
     command: redis-server
     volumes:
       - /volume1/Workshop/docker/dawarich/redis:/data:rw
-    restart: on-failure:5
+    restart: no
     healthcheck:
       test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
       interval: 10s
@@ -29,7 +29,7 @@ services:
       POSTGRES_USER: ${DATABASE_USERNAME}
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
     shm_size: 1G
-    restart: on-failure:5
+    restart: no
 
   dawarich_app:
     image: freikin/dawarich:latest
@@ -43,7 +43,7 @@ services:
     tty: true
     entrypoint: web-entrypoint.sh
     command: ['bin/rails', 'server', '-p', '3000', '-b', '::']
-    restart: on-failure
+    restart: no
     logging:
       driver: "json-file"
       options:
@@ -71,7 +71,7 @@ services:
     tty: true
     entrypoint: sidekiq-entrypoint.sh
     command: ['sidekiq']
-    restart: on-failure:5
+    restart: no
     logging:
       driver: "json-file"
       options:
