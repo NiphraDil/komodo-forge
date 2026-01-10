@@ -510,6 +510,18 @@ MUSIC = [[MEDIA_MUSIC_NAS]]
 ##
 
 [[stack]]
+name = "rackula"
+[stack.config]
+server = "zouzoulinux"
+poll_for_updates = true
+auto_update = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/rackula"
+
+##
+
+[[stack]]
 name = "reitti"
 [stack.config]
 server = "zouzoulinux"
