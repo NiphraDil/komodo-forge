@@ -3,6 +3,7 @@ services:
         container_name: tara-assistant
         image: ghcr.io/tarahome/taraassistant:latest
         restart: unless-stopped
+        user: 1026:100
         ports:
             - 8124:8000
         volumes:
