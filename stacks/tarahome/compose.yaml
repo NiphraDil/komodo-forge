@@ -1,0 +1,10 @@
+services:
+    taraassistant:
+        container_name: tara-assistant
+        image: ghcr.io/tarahome/taraassistant:latest
+        restart: unless-stopped
+        ports:
+            - 8124:8000
+        volumes:
+            - /volume1/Workshop/docker/tarahome:/app/data
+        
