@@ -579,6 +579,18 @@ INITIAL_PASSWORD = [[STIRLING_INITIAL_PASSWORD]]
 ##
 
 [[stack]]
+name = "tarahome"
+[stack.config]
+server = "ZouzouNAS2"
+poll_for_updates = true
+auto_update = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/tarahome"
+
+##
+
+[[stack]]
 name = "thunderbird"
 [stack.config]
 server = "zouzoulinux"
