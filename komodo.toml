@@ -196,6 +196,16 @@ run_directory = "stacks/deemix"
 ##
 
 [[stack]]
+name = "dispatcharr"
+[stack.config]
+server = "zouzoulinux"
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/dispatcharr"
+
+##
+
+[[stack]]
 name = "docmost"
 [stack.config]
 server = "ZouzouNAS2"
