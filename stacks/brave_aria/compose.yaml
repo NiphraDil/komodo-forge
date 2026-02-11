@@ -1,6 +1,6 @@
 services:
   brave:
-    container_name: Brave
+    container_name: Brave_Aria
     image: ghcr.io/linuxserver/brave:latest
     healthcheck:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/3000' || exit 1
