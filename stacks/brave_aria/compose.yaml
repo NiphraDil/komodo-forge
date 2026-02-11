@@ -1,0 +1,25 @@
+services:
+  brave:
+    container_name: Brave
+    image: ghcr.io/linuxserver/brave:latest
+    healthcheck:
+      test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/3000' || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 90s
+    security_opt:
+      - no-new-privileges:true
+      - seccomp:unconfined
+    shm_size: "2gb"
+    restart: on-failure:5
+    ports:
+      - 3935:3000
+    volumes:
+      - /var/lib/brave_aria:/config:rw
+    environment:
+     CUSTOM_USER: aria
+     PASSWORD: popo17122018
+     TZ: Europe/Amsterdam
+     PUID: 1000
+     PGID: 1000
