@@ -1,6 +1,6 @@
 version: "3.9"
 services:
-  jellyseerr:
+  seerr:
     image: ghcr.io/seerr-team/seerr:latest
     init: true
     container_name: Seerr
