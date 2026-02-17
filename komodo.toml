@@ -130,6 +130,18 @@ BRAVE_PASSWORD = [[BRAVE_PASSWORD]]
 ##
 
 [[stack]]
+name = "brave_aria"
+[stack.config]
+server = "zouzoulinux"
+poll_for_updates = true
+auto_update = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/brave_aria"
+
+##
+
+[[stack]]
 name = "cloudflare_ddns"
 [stack.config]
 server = "ZouzouNAS2"
@@ -561,6 +573,17 @@ run_directory = "stacks/sabnzbd"
 ##
 
 [[stack]]
+name = "seerr"
+[stack.config]
+server = "ZouzouNAS2"
+poll_for_updates = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/jellyseerr/seerr"
+
+##
+
+[[stack]]
 name = "slink"
 [stack.config]
 server = "zouzoulinux"
@@ -584,6 +607,40 @@ environment = """
   # VARIABLE = value
 INITIAL_USER = [[STIRLING_INITIAL_USER]]
 INITIAL_PASSWORD = [[STIRLING_INITIAL_PASSWORD]]
+"""
+
+##
+
+[[stack]]
+name = "tandoor"
+[stack.config]
+server = "zouzoulinux"
+poll_for_updates = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/tandoor"
+environment = """
+# VARIABLE# ---------------------------------------------------------------------------
+# This template contains only required options.
+# Visit the docs to find more https://docs.tandoor.dev/system/configuration/
+# ---------------------------------------------------------------------------
+
+# random secret key, use for example `base64 /dev/urandom | head -c50` to generate one
+SECRET_KEY=[[TANDOOR_SECRET_KEY]]
+
+# your default timezone See https://timezonedb.com/time-zones for a list of timezones
+TZ=Europe/Amsterdam
+
+# allowed hosts (see documentation), should be set to your hostname(s) but might be * (default) for some proxies/providers
+ALLOWED_HOSTS=recipes.zouzounet.nl,192.168.2.42
+
+# add only a database password if you want to run with the default postgres, otherwise change settings accordingly
+DB_ENGINE=django.db.backends.postgresql
+POSTGRES_HOST=db_recipes
+POSTGRES_DB=djangodb
+POSTGRES_PORT=5432
+POSTGRES_USER=djangouser
+POSTGRES_PASSWORD=[[TANDOOR_POSTGRES_PASSWORD]]
 """
 
 ##
