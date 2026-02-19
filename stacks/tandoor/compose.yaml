@@ -15,6 +15,7 @@ services:
     volumes:
       - /var/lib/tandoor/staticfiles:/opt/recipes/staticfiles
       - /var/lib/tandoor/mediafiles:/opt/recipes/mediafiles
+      - /mnt/warehouse/Rino/recipes:/opt/recipes/externalfiles
     ports:
       - 9815:80
     depends_on:
