@@ -1,0 +1,11 @@
+services:
+  aurral:
+    image: ghcr.io/lklynet/aurral:latest
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    environment:
+      - DOWNLOAD_FOLDER=/var/lib/aurral/downloads
+    volumes:
+      - /var/lib/aurral/downloads:/app/downloads
+      - /var/lib/aurral/data:/app/backend/data
