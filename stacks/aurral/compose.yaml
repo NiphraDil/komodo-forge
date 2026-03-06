@@ -6,6 +6,8 @@ services:
       - "3001:3001"
     environment:
       - DOWNLOAD_FOLDER=/var/lib/aurral/downloads
+      - PUID: 1000
+      - PGID: 1000
     volumes:
       - /var/lib/aurral/downloads:/app/downloads
       - /var/lib/aurral/data:/app/backend/data
