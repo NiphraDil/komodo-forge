@@ -28,7 +28,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /volume1/Workshop/docker/beszel_agent:/var/lib/beszel-agent
       # monitor other disks / partitions by mounting a folder in /extra-filesystems
-      # - /mnt/disk/.beszel:/extra-filesystems/sda1:ro
+      - /volume1:/extra-filesystems/sda1:ro
+      - /volume2:/extra-filesystems/sda2:ro
     environment:
       LISTEN: 45876
       KEY: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGstaHjTsDJ0ZmQDne1pS++jqK4JbVoMnV/9GosuUn77'
