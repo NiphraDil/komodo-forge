@@ -8,14 +8,29 @@ services:
       - 8095:8090
     restart: always
 
+  #beszel-agent:
+    #image: henrygd/beszel-agent
+    #container_name: Beszel-Agent
+    #network_mode: host
+    #volumes:
+    #  - /var/run/docker.sock:/var/run/docker.sock:ro
+    #environment:
+      #PORT: 45876
+      #KEY: ${BESZEL_KEY}
+      #FILESYSTEM: /dev/sda1
+    #restart: always
   beszel-agent:
     image: henrygd/beszel-agent
-    container_name: Beszel-Agent
+    container_name: beszel-agent
+    restart: always
     network_mode: host
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./beszel_agent_data:/var/lib/beszel-agent
+      # monitor other disks / partitions by mounting a folder in /extra-filesystems
+      # - /mnt/disk/.beszel:/extra-filesystems/sda1:ro
     environment:
-      PORT: 45876
-      KEY: ${BESZEL_KEY}
-      FILESYSTEM: /dev/sda1
-    restart: always
+      LISTEN: 45876
+      KEY: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGstaHjTsDJ0ZmQDne1pS++jqK4JbVoMnV/9GosuUn77'
+      TOKEN: 0fd79af3-a66e-4750-ac3a-f2fcabe2abe8
+      HUB_URL: https://monitor.zouzounet.nl  
