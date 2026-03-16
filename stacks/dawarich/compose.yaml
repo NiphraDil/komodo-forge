@@ -13,7 +13,7 @@ services:
     networks:
       - dawarich
     volumes:
-      - dawarich_shared:/data
+      - /var/lib/dawarich/shared:/data
     restart: always
     healthcheck:
       test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
@@ -28,8 +28,8 @@ services:
     shm_size: 1G
     container_name: dawarich_db
     volumes:
-      - dawarich_db_data:/var/lib/postgresql/data
-      - dawarich_shared:/var/shared
+      - /var/lib/dawarich/db_data:/var/lib/postgresql/data
+      - /var/lib/dawarich/shared:/var/shared
     networks:
       - dawarich
     environment:
@@ -49,10 +49,10 @@ services:
     image: freikin/dawarich:latest
     container_name: dawarich_app
     volumes:
-      - dawarich_public:/var/app/public
-      - dawarich_watched:/var/app/tmp/imports/watched
-      - dawarich_storage:/var/app/storage
-      - dawarich_db_data:/dawarich_db_data
+      - /var/lib/dawarich/public:/var/app/public
+      - /var/lib/dawarich/watched:/var/app/tmp/imports/watched
+      - /var/lib/dawarich/storage:/var/app/storage
+      - /var/lib/dawarich/db_data:/dawarich_db_data
     networks:
       - dawarich
     ports:
@@ -109,9 +109,9 @@ services:
     image: freikin/dawarich:latest
     container_name: dawarich_sidekiq
     volumes:
-      - dawarich_public:/var/app/public
-      - dawarich_watched:/var/app/tmp/imports/watched
-      - dawarich_storage:/var/app/storage
+      - /var/lib/dawarich/public:/var/app/public
+      - /var/lib/dawarich/watched:/var/app/tmp/imports/watched
+      - /var/lib/dawarich/storage:/var/app/storage
     networks:
       - dawarich
     stdin_open: true
@@ -159,9 +159,9 @@ services:
         condition: service_healthy
         restart: true
 
-volumes:
-  dawarich_db_data: /var/lib/dawarich/db_data
-  dawarich_shared: /var/lib/dawarich/shared
-  dawarich_public: /var/lib/dawarich/public
-  dawarich_watched: /var/lib/dawarich/watched
-  dawarich_storage: /var/lib/dawarich/storage
+#volumes:
+#  dawarich_db_data:
+#  dawarich_shared:
+#  dawarich_public:
+#  dawarich_watched:
+#  dawarich_storage:
