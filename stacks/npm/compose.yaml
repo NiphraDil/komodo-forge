@@ -4,7 +4,7 @@ services:
     restart: unless-stopped
     ports:
       - '8081:80'
-      - '81:81'
+      - '8181:81'
       - '4444:443'
     volumes:
       - /volume1/Workshop/docker/npm/data:/data
