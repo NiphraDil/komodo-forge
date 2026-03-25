@@ -18,4 +18,4 @@ services:
       INTEL_GPU_DEVICE: drm:/dev/dri/card1
       HUB_URL: https://monitor.zouzounet.nl 
     devices:
-      - /dev/dri:/dev/dri
+      - /dev/dri/card1:/dev/dri/card0
