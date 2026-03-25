@@ -79,6 +79,18 @@ environment = """
 ##
 
 [[stack]]
+name = "aurral"
+[stack.config]
+server = "zouzoulinux"
+poll_for_updates = true
+auto_update = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/aurral"
+
+##
+
+[[stack]]
 name = "beszel"
 [stack.config]
 server = "ZouzouNAS2"
@@ -170,26 +182,26 @@ run_directory = "stacks/copyparty"
 [[stack]]
 name = "dawarich"
 [stack.config]
-server = "ZouzouNAS2"
+server = "zouzoulinux"
 poll_for_updates = true
 git_account = "NiphraDil"
 repo = "NiphraDil/komodo-forge"
 run_directory = "stacks/dawarich"
 environment = """
   # VARIABLE = value
-RAILS_ENV = development
-MIN_MINUTES_SPENT_IN_CITY = 60
-APPLICATION_HOST = 127.0.0.1:32568
-TIME_ZONE = Europe/Amsterdam
-BACKGROUND_PROCESSING_CONCURRENCY = 10
-MAP_CENTER = [52.083416, 4.355778]
-DATABASE_HOST = dawarich_db
-DATABASE_USERNAME = postgres
-DATABASE_PASSWORD = Farwenyadawarich13!
-DATABASE_NAME = dawarich
-REDIS_URL = redis://dawarich_redis:6379/0
-APPLICATION_HOSTS = localhost,gps.zouzounet.nl
-SECRET_KEY_BASE = [[DAWARICH_SECRET]]
+#RAILS_ENV = development
+#MIN_MINUTES_SPENT_IN_CITY = 60
+#APPLICATION_HOST = 127.0.0.1:32568
+#TIME_ZONE = Europe/Amsterdam
+#BACKGROUND_PROCESSING_CONCURRENCY = 10
+#MAP_CENTER = [52.083416, 4.355778]
+#DATABASE_HOST = dawarich_db
+#DATABASE_USERNAME = postgres
+#DATABASE_PASSWORD = Farwenyadawarich13!
+#DATABASE_NAME = dawarich
+#REDIS_URL = redis://dawarich_redis:6379/0
+#APPLICATION_HOSTS = localhost,gps.zouzounet.nl
+#SECRET_KEY_BASE = [[DAWARICH_SECRET]]
 """
 
 ##
@@ -474,6 +486,16 @@ SPOTIFY_SECRET = [[SPOTIFY_SECRET]]
 LASTFM_API_KEY = [[LASTFM_API_KEY]]
 LASTFM_SECRET = [[LASTFM_API_SECRET]]
 """
+
+##
+
+[[stack]]
+name = "npmplus"
+[stack.config]
+server = "ZouzouNAS2"
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/npmplus"
 
 ##
 
