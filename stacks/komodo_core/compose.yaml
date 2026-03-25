@@ -24,10 +24,11 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: ${KOMODO_DB_PASSWORD}
   
   core:
-    image: ghcr.io/moghtech/komodo-core:${COMPOSE_KOMODO_IMAGE_TAG}
+    image: ghcr.io/moghtech/komodo-core:2
     labels:
-      komodo.skip: # Prevent Komodo from stopping with StopAllContainers
+      komodo.skip: true # Prevent Komodo from stopping with StopAllContainers
     restart: always
+    init: true
     depends_on:
       - mongo
     ports:
@@ -41,6 +42,7 @@ services:
       ## Core cache for repos for latest commit hash / contents
       # deprecated - /volume1/Workshop/docker/komodo/repo-cache:/repo-cache
       - /volume1/Workshop/docker/komodo/backups:/backups
+      - /volume1/Workshop/docker/komodo/keys:/config/keys
       ## Store sync files on server
       # - /path/to/syncs:/syncs
       ## Optionally mount a custom core.config.toml
