@@ -734,6 +734,7 @@ executions = [
 
 [[procedure]]
 name = "restart on plan"
+config.schedule = "Every day at 03:00"
 
 [[procedure.config.stage]]
 name = "Stage 1"
