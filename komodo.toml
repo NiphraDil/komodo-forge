@@ -717,6 +717,17 @@ run_directory = "stacks/wyoming"
 
 ##
 
+[[stack]]
+name = "zoraxy"
+[stack.config]
+server = "zouzoulinux"
+poll_for_updates = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/zoraxy"
+
+##
+
 [[procedure]]
 name = "Global Auto Update"
 description = "Pulls and auto updates Stacks and Deployments using 'poll_for_updates' or 'auto_update'."
@@ -738,9 +749,10 @@ config.schedule = "Every day at 03:00"
 
 [[procedure.config.stage]]
 name = "Stage 1"
-enabled = false
+enabled = true
 executions = [
-  { execution.type = "RestartStack", execution.params.stack = "freshrss", execution.params.services = [], enabled = true }
+  { execution.type = "RestartStack", execution.params.stack = "freshrss", execution.params.services = [], enabled = true },
+  { execution.type = "RestartContainer", execution.params.server = "ZouzouNAS2", execution.params.container = "arr-byparr-1", enabled = true }
 ]
 
 ##
