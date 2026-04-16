@@ -3,6 +3,7 @@ name = "ZouzouNAS2"
 [server.config]
 address = "https://192.168.2.117:8120"
 enabled = true
+auto_prune = false
 
 ##
 
