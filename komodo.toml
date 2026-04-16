@@ -3,6 +3,7 @@ name = "ZouzouNAS2"
 [server.config]
 address = "https://192.168.2.117:8120"
 enabled = true
+auto_prune = false
 
 ##
 
@@ -752,7 +753,7 @@ config.schedule = "Every day at 03:00"
 name = "Stage 1"
 enabled = true
 executions = [
-  { execution.type = "GlobalAutoUpdate", execution.params = {}, enabled = true }
+  { execution.type = "GlobalAutoUpdate", execution.params.skip_auto_update = false, enabled = true }
 ]
 
 ##
