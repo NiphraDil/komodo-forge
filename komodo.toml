@@ -45,6 +45,7 @@ name = "arr"
 [stack.config]
 server = "ZouzouNAS2"
 poll_for_updates = true
+auto_update_skip_services = ["readarr"]
 git_account = "NiphraDil"
 repo = "NiphraDil/komodo-forge"
 run_directory = "stacks/arr"
@@ -217,6 +218,18 @@ auto_update_all_services = true
 git_account = "NiphraDil"
 repo = "NiphraDil/komodo-forge"
 run_directory = "stacks/deemix"
+
+##
+
+[[stack]]
+name = "degoog"
+[stack.config]
+server = "zouzoulinux"
+poll_for_updates = true
+auto_update = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/degoog"
 
 ##
 
@@ -780,7 +793,7 @@ executions = [
 name = "local"
 [builder.config]
 type = "Server"
-params.server_id = "ZouzouNAS2"
+params.server = "ZouzouNAS2"
 
 ##
 
