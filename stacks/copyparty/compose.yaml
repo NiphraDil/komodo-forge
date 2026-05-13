@@ -8,8 +8,7 @@ services:
       - 3923:3923
     volumes:
       - /var/lib/copyparty/:/cfg:z
-      - /mnt/warehouse/copyparty:/w:z
-      - /var/lib:/w/zouzoulinux_docker
+      - /var/lib:/w:z
 
     environment:
       LD_PRELOAD: /usr/lib/libmimalloc-secure.so.2
