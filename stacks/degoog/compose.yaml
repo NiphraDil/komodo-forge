@@ -1,0 +1,8 @@
+services:
+  degoog:
+    image: ghcr.io/degoog-org/degoog:latest
+    volumes:
+      - /var/lib/degoog:/app/data
+    ports:
+      - "4444:4444"
+    restart: unless-stopped
