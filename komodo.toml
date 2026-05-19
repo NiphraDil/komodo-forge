@@ -228,6 +228,10 @@ auto_update = true
 git_account = "NiphraDil"
 repo = "NiphraDil/komodo-forge"
 run_directory = "stacks/degoog"
+environment = """
+  # VARIABLE = value
+DEGOOG_PASSWORD = [[DEGOOG_PASSWORD]]
+"""
 
 ##
 
