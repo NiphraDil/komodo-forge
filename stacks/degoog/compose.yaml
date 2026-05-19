@@ -5,4 +5,6 @@ services:
       - /var/lib/degoog:/app/data
     ports:
       - "4444:4444"
+    environment:
+      DEGOOG_SETTINGS_PASSWORDS: ${DEGOOG_PASSWORD}  
     restart: unless-stopped
