@@ -34,8 +34,8 @@ services:
       - ${MUSIC}:/music:rw
       - ${DOWNLOADS}:/downloads:rw
       - /volume1/Workshop/docker/lidarr/config:/config:rw
-      - /volume1/Workshop/docker/lidarr/custom-services.d:/custom-services.d:rw
-      - /volume1/Workshop/docker/lidarr/custom-cont-init.d:/custom-cont-init.d:rw
+      #- /volume1/Workshop/docker/lidarr/custom-services.d:/custom-services.d:rw
+      #- /volume1/Workshop/docker/lidarr/custom-cont-init.d:/custom-cont-init.d:rw
     environment:
       TZ: Europe/Amsterdam
       PGID: 100
