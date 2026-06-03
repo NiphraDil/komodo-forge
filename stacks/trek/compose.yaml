@@ -1,0 +1,46 @@
+services:
+  app:
+    image: mauriceboe/trek:latest
+    container_name: trek
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - SETUID
+      - SETGID
+    tmpfs:
+      - /tmp:noexec,nosuid,size=64m
+    ports:
+      - "4767:4767"
+    environment:
+      - NODE_ENV=production
+      - PORT=4767
+      - ENCRYPTION_KEY=${TREK_KEY}   # generate with: openssl rand -hex 32
+      - TZ=Europe/Amsterdam
+      - LOG_LEVEL=info
+      - ALLOWED_ORIGINS=https://travel.zouzounet.nl,192.168.2.0/24
+      - APP_URL=https://travel.zouzounet.nl                 # required for OIDC + email links
+      - ALLOW_INTERNAL_NETWORK=true
+      - ADMIN_EMAIL=niphradil@gmail.com
+      - ADMIN_PASSWORD=${TREK_PASSWORD}
+      # - FORCE_HTTPS=true                   # behind a TLS-terminating proxy
+      - TRUST_PROXY=1
+      # - OIDC_ISSUER=https://auth.example.com
+      # - OIDC_CLIENT_ID=trek
+      # - OIDC_CLIENT_SECRET=supersecret
+      # - OIDC_DISPLAY_NAME=SSO
+      # - OIDC_ADMIN_CLAIM=groups
+      # - OIDC_ADMIN_VALUE=app-trek-admins
+    volumes:
+      - /var/lib/trek/data:/app/data
+      - /var/lib/trek/uploads:/app/uploads
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:4767/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
