@@ -21,7 +21,7 @@ services:
       - ENCRYPTION_KEY=${TREK_KEY}   # generate with: openssl rand -hex 32
       - TZ=Europe/Amsterdam
       - LOG_LEVEL=info
-      - ALLOWED_ORIGINS=https://travel.zouzounet.nl,192.168.2.0/24
+      - ALLOWED_ORIGINS=*
       - APP_URL=https://travel.zouzounet.nl                 # required for OIDC + email links
       - ALLOW_INTERNAL_NETWORK=true
       - ADMIN_EMAIL=niphradil@gmail.com
