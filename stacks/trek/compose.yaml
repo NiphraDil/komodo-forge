@@ -26,6 +26,7 @@ services:
       - ALLOW_INTERNAL_NETWORK=true
       - ADMIN_EMAIL=niphradil@gmail.com
       - ADMIN_PASSWORD=${TREK_PASSWORD}
+      - COOKIE_SECURE=false
       # - FORCE_HTTPS=true                   # behind a TLS-terminating proxy
       - TRUST_PROXY=1
       # - OIDC_ISSUER=https://auth.example.com
