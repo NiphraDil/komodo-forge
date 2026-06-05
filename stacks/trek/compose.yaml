@@ -27,6 +27,7 @@ services:
       - ADMIN_EMAIL=niphradil@gmail.com
       - ADMIN_PASSWORD=${TREK_PASSWORD}
       - COOKIE_SECURE=false
+      - MCP_RATE_LIMIT=1200
       # - FORCE_HTTPS=true                   # behind a TLS-terminating proxy
       - TRUST_PROXY=1
       # - OIDC_ISSUER=https://auth.example.com
