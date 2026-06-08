@@ -726,6 +726,22 @@ run_directory = "stacks/thunderbird"
 ##
 
 [[stack]]
+name = "trek"
+[stack.config]
+server = "zouzoulinux"
+poll_for_updates = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/trek"
+environment = """
+  # VARIABLE = value
+TREK_KEY = [[TREK_KEY]]
+TREK_PASSWORD = [[TREK_PASSWORD]]
+"""
+
+##
+
+[[stack]]
 name = "wyoming"
 [stack.config]
 server = "zouzoulinux"
