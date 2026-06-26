@@ -116,12 +116,12 @@ services:
     volumes:
       - /var/lib/rackula:/data
     environment:
-      - DATA_DIR=/data
+      - DATA_DIR=/var/lib/rackula
       - RACKULA_API_PORT=${RACKULA_API_PORT:-3001}
       # Production: explicitly set CORS_ORIGIN to your real app origin,
       # keep ALLOW_INSECURE_CORS=false, and set RACKULA_API_WRITE_TOKEN.
       # The localhost default is only for local development convenience.
-      - CORS_ORIGIN=${CORS_ORIGIN:-http://localhost:8080}
+      - CORS_ORIGIN=${CORS_ORIGIN:-https:rackula.zouzounet.nl}
       # Optional (recommended): protects PUT/DELETE routes via Bearer token
       - RACKULA_API_WRITE_TOKEN=${RACKULA_API_TOKEN}
       # Auth mode model: none | oidc | local
