@@ -60,7 +60,7 @@ services:
       # Optional: token forwarded to API for PUT/DELETE route auth
       - API_WRITE_TOKEN=${RACKULA_API_TOKEN}
       # Auth mode for nginx routing behavior
-      - RACKULA_AUTH_MODE=${RACKULA_AUTH_MODE:-none}
+      - RACKULA_AUTH_MODE=${RACKULA_AUTH_MODE:-local}
       # Storage mode for the frontend (browser|server). This stack provisions
       # the API, so layouts save server-side by default.
       - RACKULA_STORAGE_MODE=${RACKULA_STORAGE_MODE:-server}
@@ -125,7 +125,7 @@ services:
       # Optional (recommended): protects PUT/DELETE routes via Bearer token
       - RACKULA_API_WRITE_TOKEN=${RACKULA_API_TOKEN}
       # Auth mode model: none | oidc | local
-      - RACKULA_AUTH_MODE=${RACKULA_AUTH_MODE:-none}
+      - RACKULA_AUTH_MODE=${RACKULA_AUTH_MODE:-local}
       # Required when auth mode is enabled (oidc/local)
       # API startup validation fails fast if this is missing/short (minimum 32 chars).
       - RACKULA_AUTH_SESSION_SECRET=${RACKULA_AUTH_SECRET}
@@ -140,10 +140,10 @@ services:
       - RACKULA_AUTH_SESSION_GENERATION=${RACKULA_AUTH_SESSION_GENERATION:-0}
       - RACKULA_AUTH_SESSION_COOKIE_SAMESITE=${RACKULA_AUTH_SESSION_COOKIE_SAMESITE:-Lax}
       # Production-safe default. Set false only for local HTTP auth testing.
-      - RACKULA_AUTH_SESSION_COOKIE_SECURE=${RACKULA_AUTH_SESSION_COOKIE_SECURE:-false}
-      - RACKULA_AUTH_CSRF_PROTECTION=${RACKULA_AUTH_CSRF_PROTECTION:-false}
+      - RACKULA_AUTH_SESSION_COOKIE_SECURE=${RACKULA_AUTH_SESSION_COOKIE_SECURE:-true}
+      - RACKULA_AUTH_CSRF_PROTECTION=${RACKULA_AUTH_CSRF_PROTECTION:-true}
       # Explicit insecure fallback (use only for isolated/local testing)
-      - ALLOW_INSECURE_CORS=${ALLOW_INSECURE_CORS:-true}
+      - ALLOW_INSECURE_CORS=${ALLOW_INSECURE_CORS:-false}
 
     deploy:
       resources:
