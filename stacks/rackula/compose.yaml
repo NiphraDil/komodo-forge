@@ -1,10 +1,10 @@
-services:
-  Rackula:
-    image: ghcr.io/rackulalives/rackula:latest
-    # To build locally instead, comment out 'image' and uncomment 'build':
-    # build: ./deploy
-    ports:
-      - "6565:80"
+#services:
+#  Rackula:
+#    image: ghcr.io/rackulalives/rackula:latest
+#    # To build locally instead, comment out 'image' and uncomment 'build':
+#    # build: ./deploy
+#    ports:
+#      - "6565:80"
 
 # Rackula Development Docker Compose
 #
@@ -38,30 +38,48 @@ services:
 #   RACKULA_AUTH_CSRF_PROTECTION: Enable CSRF checks for cookie-authenticated writes
 #   ALLOW_INSECURE_CORS: Explicit insecure fallback for wildcard CORS in production (default: false)
 
+# Rackula with Persistence - Self-Hosting Quick Start
+#
+# Usage:
+#   mkdir -p data && sudo chown 1001:1001 data
+#   docker compose up -d
+#   Open http://localhost:8080
+#
+# Documentation: https://github.com/RackulaLives/Rackula/blob/main/docs/deployment/SELF-HOSTING.md
+
 services:
   rackula:
-    image: ${RACKULA_IMAGE:-ghcr.io/rackulalives/rackula:latest}
-    # For persistence, use the :persist image instead:
-    # image: ghcr.io/rackulalives/rackula:persist
-    container_name: ${RACKULA_CONTAINER_NAME:-rackula}
+    image: ghcr.io/rackulalives/rackula:persist
+    container_name: rackula
     ports:
-      - 6565:80
+      - "${RACKULA_PORT:-6565}:${RACKULA_LISTEN_PORT:-8080}"
     environment:
-      # API proxy target (API_PORT derived from RACKULA_API_PORT)
-      - API_HOST=${API_HOST:-rackula-api}
+      - API_HOST=rackula-api
       - API_PORT=${RACKULA_API_PORT:-3001}
-      # nginx listen port inside container (allows matching host port if needed)
-      - RACKULA_LISTEN_PORT=80
+      - RACKULA_LISTEN_PORT=${RACKULA_LISTEN_PORT:-8080}
       # Optional: token forwarded to API for PUT/DELETE route auth
-      - API_WRITE_TOKEN=${RACKULA_API_WRITE_TOKEN:-}
+      - API_WRITE_TOKEN=${RACKULA_API_TOKEN}
       # Auth mode for nginx routing behavior
       - RACKULA_AUTH_MODE=${RACKULA_AUTH_MODE:-none}
+      # Storage mode for the frontend (browser|server). This stack provisions
+      # the API, so layouts save server-side by default.
+      - RACKULA_STORAGE_MODE=${RACKULA_STORAGE_MODE:-server}
       # IPv6 listen: auto-detect (default), force on, or force off
       - RACKULA_ENABLE_IPV6=${RACKULA_ENABLE_IPV6:-auto}
       # DNS resolver for nginx upstream resolution (override for Kubernetes)
       - NGINX_RESOLVER=${NGINX_RESOLVER:-127.0.0.11}
+      # Set to 1 when Rackula is behind a trusted reverse proxy.
+      # Required for correct https:// scheme in auth redirects (reads X-Forwarded-Proto).
+      # Your proxy must also forward the original Host header unchanged — including any
+      # non-standard external port — because auth redirects use the Host header for
+      # the redirect authority (e.g. proxy_set_header Host $host in nginx).
+      # Leave at 0 (default) for direct access — prevents open-redirect abuse.
+      - RACKULA_TRUST_PROXY=${RACKULA_TRUST_PROXY:-1}
     restart: unless-stopped
     stop_grace_period: 10s
+    depends_on:
+      rackula-api:
+        condition: service_healthy
 
     deploy:
       resources:
@@ -72,6 +90,7 @@ services:
           cpus: "0.10"
           memory: 16M
 
+    # Security hardening (optional but recommended)
     security_opt:
       - no-new-privileges:true
     cap_drop:
@@ -89,33 +108,32 @@ services:
         max-size: "10m"
         max-file: "3"
 
-  # API sidecar for persistent storage (optional)
-  # Enable with: docker compose --profile persist up -d
   rackula-api:
-    profiles: [persist]
-    image: ${RACKULA_API_IMAGE:-ghcr.io/rackulalives/rackula-api:latest}
-    container_name: ${RACKULA_API_CONTAINER_NAME:-rackula-api}
+    image: ghcr.io/rackulalives/rackula-api:latest
+    container_name: rackula-api
     restart: unless-stopped
     stop_grace_period: 10s
-
     volumes:
-      # Note: Host directory must be writable by container user (uid 1001)
-      # Run: mkdir -p ./data && sudo chown 1001:1001 ./data
-      - ./data:/data
-
+      - /var/lib/rackula:/data
     environment:
       - DATA_DIR=/data
       - RACKULA_API_PORT=${RACKULA_API_PORT:-3001}
-      # Production: set CORS_ORIGIN to your real app origin.
-      # localhost default is for local development convenience.
+      # Production: explicitly set CORS_ORIGIN to your real app origin,
+      # keep ALLOW_INSECURE_CORS=false, and set RACKULA_API_WRITE_TOKEN.
+      # The localhost default is only for local development convenience.
       - CORS_ORIGIN=${CORS_ORIGIN:-http://localhost:8080}
       # Optional (recommended): protects PUT/DELETE routes via Bearer token
-      - RACKULA_API_WRITE_TOKEN=${RACKULA_API_WRITE_TOKEN:-}
+      - RACKULA_API_WRITE_TOKEN=${RACKULA_API_TOKEN}
       # Auth mode model: none | oidc | local
       - RACKULA_AUTH_MODE=${RACKULA_AUTH_MODE:-none}
       # Required when auth mode is enabled (oidc/local)
       # API startup validation fails fast if this is missing/short (minimum 32 chars).
-      - RACKULA_AUTH_SESSION_SECRET=${RACKULA_AUTH_SESSION_SECRET:-}
+      - RACKULA_AUTH_SESSION_SECRET=${RACKULA_AUTH_SECRET}
+      # Local auth credentials (required when RACKULA_AUTH_MODE=local)
+      # In production, prefer Docker secrets or an .env file with restricted permissions
+      # rather than inline values visible in container metadata.
+      - RACKULA_LOCAL_USERNAME=${RACKULA_PASSWORD}
+      - RACKULA_LOCAL_PASSWORD=${RACKULA_USER}
       # Session hardening defaults
       - RACKULA_AUTH_SESSION_MAX_AGE_SECONDS=${RACKULA_AUTH_SESSION_MAX_AGE_SECONDS:-43200}
       - RACKULA_AUTH_SESSION_IDLE_TIMEOUT_SECONDS=${RACKULA_AUTH_SESSION_IDLE_TIMEOUT_SECONDS:-1800}
@@ -136,6 +154,7 @@ services:
           cpus: "0.05"
           memory: 16M
 
+    # Security hardening
     security_opt:
       - no-new-privileges:true
     cap_drop:
@@ -145,7 +164,11 @@ services:
       - /tmp:size=5M
 
     healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:${RACKULA_API_PORT:-3001}/health"]
+      test:
+        [
+          "CMD-SHELL",
+          "wget -qO- http://127.0.0.1:${RACKULA_API_PORT:-3001}/health",
+        ]
       interval: 30s
       timeout: 10s
       start_period: 5s
