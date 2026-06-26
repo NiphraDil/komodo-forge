@@ -58,14 +58,14 @@ services:
       - API_PORT=${RACKULA_API_PORT:-3001}
       - RACKULA_LISTEN_PORT=${RACKULA_LISTEN_PORT:-6565}
       # Optional: token forwarded to API for PUT/DELETE route auth
-      - API_WRITE_TOKEN=${RACKULA_API_TOKEN}
+      #- API_WRITE_TOKEN=${RACKULA_API_TOKEN}
       # Auth mode for nginx routing behavior
       - RACKULA_AUTH_MODE=${RACKULA_AUTH_MODE:-local}
       # Storage mode for the frontend (browser|server). This stack provisions
       # the API, so layouts save server-side by default.
       - RACKULA_STORAGE_MODE=${RACKULA_STORAGE_MODE:-server}
       # IPv6 listen: auto-detect (default), force on, or force off
-      - RACKULA_ENABLE_IPV6=${RACKULA_ENABLE_IPV6:-auto}
+      - RACKULA_ENABLE_IPV6=${RACKULA_ENABLE_IPV6:-off}
       # DNS resolver for nginx upstream resolution (override for Kubernetes)
       - NGINX_RESOLVER=${NGINX_RESOLVER:-127.0.0.11}
       # Set to 1 when Rackula is behind a trusted reverse proxy.
@@ -123,7 +123,7 @@ services:
       # The localhost default is only for local development convenience.
       - CORS_ORIGIN=${CORS_ORIGIN:-https://rackula.zouzounet.nl}
       # Optional (recommended): protects PUT/DELETE routes via Bearer token
-      - RACKULA_API_WRITE_TOKEN=${RACKULA_API_TOKEN}
+      #- RACKULA_API_WRITE_TOKEN=${RACKULA_API_TOKEN}
       # Auth mode model: none | oidc | local
       - RACKULA_AUTH_MODE=${RACKULA_AUTH_MODE:-local}
       # Required when auth mode is enabled (oidc/local)
