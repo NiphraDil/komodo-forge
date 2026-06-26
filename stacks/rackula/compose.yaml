@@ -132,8 +132,8 @@ services:
       # Local auth credentials (required when RACKULA_AUTH_MODE=local)
       # In production, prefer Docker secrets or an .env file with restricted permissions
       # rather than inline values visible in container metadata.
-      - RACKULA_LOCAL_USERNAME=${RACKULA_PASSWORD}
-      - RACKULA_LOCAL_PASSWORD=${RACKULA_USER}
+      - RACKULA_LOCAL_USERNAME=${RACKULA_USER}
+      - RACKULA_LOCAL_PASSWORD=${RACKULA_PASSWORD}
       # Session hardening defaults
       - RACKULA_AUTH_SESSION_MAX_AGE_SECONDS=${RACKULA_AUTH_SESSION_MAX_AGE_SECONDS:-43200}
       - RACKULA_AUTH_SESSION_IDLE_TIMEOUT_SECONDS=${RACKULA_AUTH_SESSION_IDLE_TIMEOUT_SECONDS:-1800}
