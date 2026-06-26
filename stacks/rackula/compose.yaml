@@ -52,11 +52,11 @@ services:
     image: ghcr.io/rackulalives/rackula:persist
     container_name: rackula
     ports:
-      - "${RACKULA_PORT:-6565}:${RACKULA_LISTEN_PORT:-8080}"
+      - "${RACKULA_PORT:-6565}:${RACKULA_LISTEN_PORT:-6565}"
     environment:
       - API_HOST=rackula-api
       - API_PORT=${RACKULA_API_PORT:-3001}
-      - RACKULA_LISTEN_PORT=${RACKULA_LISTEN_PORT:-8080}
+      - RACKULA_LISTEN_PORT=${RACKULA_LISTEN_PORT:-6565}
       # Optional: token forwarded to API for PUT/DELETE route auth
       - API_WRITE_TOKEN=${RACKULA_API_TOKEN}
       # Auth mode for nginx routing behavior
