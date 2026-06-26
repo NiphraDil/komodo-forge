@@ -91,16 +91,16 @@ services:
           memory: 16M
 
     # Security hardening (optional but recommended)
-    security_opt:
-      - no-new-privileges:true
-    cap_drop:
-      - ALL
-    read_only: true
-    tmpfs:
-      - /var/cache/nginx:size=10M
-      - /var/run:size=1M
-      - /tmp:size=5M
-      - /etc/nginx/conf.d:size=1M,uid=101,gid=101
+    #security_opt:
+    #  - no-new-privileges:true
+    #cap_drop:
+    #  - ALL
+    #read_only: true
+    #tmpfs:
+    #  - /var/cache/nginx:size=10M
+    #  - /var/run:size=1M
+    #  - /tmp:size=5M
+    #  - /etc/nginx/conf.d:size=1M,uid=101,gid=101
 
     logging:
       driver: json-file
