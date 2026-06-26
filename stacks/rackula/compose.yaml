@@ -125,7 +125,7 @@ services:
       # Optional (recommended): protects PUT/DELETE routes via Bearer token
       - RACKULA_API_WRITE_TOKEN=${RACKULA_API_TOKEN}
       # Auth mode model: none | oidc | local
-      - RACKULA_AUTH_MODE=${RACKULA_AUTH_MODE:-none}
+      - RACKULA_AUTH_MODE=${RACKULA_AUTH_MODE:-local}
       # Required when auth mode is enabled (oidc/local)
       # API startup validation fails fast if this is missing/short (minimum 32 chars).
       - RACKULA_AUTH_SESSION_SECRET=${RACKULA_AUTH_SECRET}
@@ -155,13 +155,13 @@ services:
           memory: 16M
 
     # Security hardening
-    security_opt:
-      - no-new-privileges:true
-    cap_drop:
-      - ALL
-    read_only: true
-    tmpfs:
-      - /tmp:size=5M
+    #security_opt:
+    #  - no-new-privileges:true
+    #cap_drop:
+    #  - ALL
+    #read_only: true
+    #tmpfs:
+    #  - /tmp:size=5M
 
     healthcheck:
       test:
