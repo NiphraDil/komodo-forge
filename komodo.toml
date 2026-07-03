@@ -595,6 +595,13 @@ auto_update = true
 git_account = "NiphraDil"
 repo = "NiphraDil/komodo-forge"
 run_directory = "stacks/rackula"
+environment = """
+  # VARIABLE = value
+RACKULA_API_TOKEN = [[RACKULA_API_TOKEN]]
+RACKULA_AUTH_SECRET = [[RACKULA_AUTH_SECRET]]
+RACKULA_USER = [[RACKULA_USER]]
+RACKULA_PASSWORD = [[RACKULA_PASSWORD]]
+"""
 
 ##
 
