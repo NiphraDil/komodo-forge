@@ -28,10 +28,11 @@ services:
       net.ipv4.conf.all.arp_announce: 2
 
     volumes:
-      - type: volume                                # Persistent Docker-managed named volume for config + database
-        source: netalertx_data
-        target: /data                               # `/data/config` and `/data/db` live inside this mount
-        read_only: false
+      - /var/lib/netalertx:/data:rw
+    #  - type: volume                                # Persistent Docker-managed named volume for config + database
+    #    source: netalertx_data
+    #    target: /data                               # `/data/config` and `/data/db` live inside this mount
+    #    read_only: false
 
     # Example custom local folder called /home/user/netalertx_data
     # - type: bind
