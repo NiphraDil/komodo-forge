@@ -85,5 +85,5 @@ services:
     # Always restart the container unless explicitly stopped
     restart: unless-stopped
 
-volumes:                        # Persistent volume for configuration and database storage
-  netalertx_data: /var/lib/netalertx
+#volumes:                        # Persistent volume for configuration and database storage
+#  netalertx_data: /var/lib/netalertx
