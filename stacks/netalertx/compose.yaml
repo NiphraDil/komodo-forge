@@ -23,9 +23,9 @@ services:
     # them on the Host OS, REMOVE the sysctls block below and apply via:
     # sudo sysctl -w net.ipv4.conf.all.arp_ignore=1 net.ipv4.conf.all.arp_announce=2
     # ---------------------------
-    sysctls:                                        # ARP flux mitigation (reduces duplicate/ambiguous ARP behavior on host networking)
-      net.ipv4.conf.all.arp_ignore: 1
-      net.ipv4.conf.all.arp_announce: 2
+    #sysctls:                                        # ARP flux mitigation (reduces duplicate/ambiguous ARP behavior on host networking)
+    #  net.ipv4.conf.all.arp_ignore: 1
+    #  net.ipv4.conf.all.arp_announce: 2
 
     volumes:
       - /var/lib/netalertx:/data:rw
