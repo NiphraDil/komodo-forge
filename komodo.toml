@@ -523,6 +523,16 @@ LASTFM_SECRET = [[LASTFM_API_SECRET]]
 ##
 
 [[stack]]
+name = "netalertx"
+[stack.config]
+server = "zouzoulinux"
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/netalertx"
+
+##
+
+[[stack]]
 name = "npmplus"
 [stack.config]
 server = "ZouzouNAS2"
