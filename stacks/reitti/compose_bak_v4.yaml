@@ -1,6 +1,6 @@
 services:
   reitti:
-    image: dedicatedcode/reitti:5
+    image: dedicatedcode/reitti:latest
     ports:
       - 32568:8080
     depends_on:
@@ -62,7 +62,7 @@ services:
     volumes:
       - /var/lib/reitti/photon:/photon/photon_data
   tile-cache:
-    image: dedicatedcode/reitti-tile-cache:5
+    image: dedicatedcode/reitti-tile-cache:next
     restart: unless-stopped
     #healthcheck:
       #test: ["CMD", "curl", "-s", "http://127.0.0.1/osm/0/0/0.png"]
