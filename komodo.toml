@@ -302,6 +302,7 @@ auto_update_all_services = true
 git_account = "NiphraDil"
 repo = "NiphraDil/komodo-forge"
 run_directory = "stacks/freshrss"
+registry_provider = "docker.io"
 
 ##
 
