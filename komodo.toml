@@ -760,6 +760,16 @@ TREK_PASSWORD = [[TREK_PASSWORD]]
 ##
 
 [[stack]]
+name = "wg-easy"
+[stack.config]
+server = "zouzoulinux"
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/wg-easy"
+
+##
+
+[[stack]]
 name = "wyoming"
 [stack.config]
 server = "zouzoulinux"
@@ -816,7 +826,7 @@ executions = [
 name = "local"
 [builder.config]
 type = "Server"
-params.server = "ZouzouNAS2"
+params.servers = ["ZouzouNAS2"]
 
 ##
 
