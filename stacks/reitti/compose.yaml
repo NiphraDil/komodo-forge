@@ -15,6 +15,7 @@ services:
         condition: service_healthy
     environment:
       PHOTON_BASE_URL: http://photon:2322
+      SPATIAL_COVERAGE: true
     volumes:
       - /var/lib/reitti/reitti/:/data/  
     
