@@ -5,7 +5,7 @@ services:
     ports:
       - "3001:3001"
     environment:
-      - DOWNLOAD_FOLDER=/var/lib/aurral/downloads
+      - DOWNLOAD_FOLDER=/app/downloads
       - PUID=1000
       - PGID=1000
     volumes:
