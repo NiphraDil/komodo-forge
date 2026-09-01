@@ -1,7 +1,8 @@
 services:
   brave:
     container_name: Brave
-    image: ghcr.io/linuxserver/brave:1.91.180-ls108
+    #image: ghcr.io/linuxserver/brave:1.91.180-ls108
+    image: ghcr.io/linuxserver/brave:latest
     healthcheck:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/3000' || exit 1
       interval: 10s
