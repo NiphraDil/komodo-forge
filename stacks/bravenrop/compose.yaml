@@ -1,6 +1,6 @@
 services:
   brave:
-    container_name: Brave
+    container_name: Bravenrop
     #image: ghcr.io/linuxserver/brave:1.91.180-ls108
     image: ghcr.io/linuxserver/brave:latest
     healthcheck:
