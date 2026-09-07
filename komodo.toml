@@ -141,6 +141,23 @@ run_directory = "stacks/brave_aria"
 ##
 
 [[stack]]
+name = "bravenrop"
+[stack.config]
+server = "zouzoulinux"
+poll_for_updates = true
+auto_update = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/bravenrop"
+environment = """
+  # VARIABLE = value
+BRAVE_USER = [[BRAVE_USER]]
+BRAVE_PASSWORD = [[BRAVE_PASSWORD]]
+"""
+
+##
+
+[[stack]]
 name = "cloudflare_ddns"
 [stack.config]
 server = "ZouzouNAS2"
