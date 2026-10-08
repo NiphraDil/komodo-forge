@@ -10,7 +10,7 @@ services:
       - /var/lib/spotiflac:/config       # App settings and internal data
       - /mnt/warehouse/incomplete:/downloads # Map this to your music library
     ports:
-      - 3002:3001 # Access the Web GUI at https://localhost:3002
+      - 3004:3001 # Access the Web GUI at https://localhost:3002
     shm_size: "1gb"
     security_opt:
       - seccomp:unconfined
