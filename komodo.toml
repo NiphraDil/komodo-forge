@@ -766,6 +766,23 @@ TREK_PASSWORD = [[TREK_PASSWORD]]
 ##
 
 [[stack]]
+name = "vikunja"
+[stack.config]
+server = "ZouzouNAS2"
+poll_for_updates = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/vikunja"
+environment = """
+  # VARIABLE = value
+VIKUNJA_DB_USER = [[VIKUNJA_DB_USER]]
+VIKUNJA_DB_PASSWORD = [[VIKUNJA_DB_PASSWORD]]
+VIKUNJA_SECRET = [[VIKUNJA_SECRET]]
+"""
+
+##
+
+[[stack]]
 name = "wg-easy"
 [stack.config]
 server = "zouzoulinux"
