@@ -1,0 +1,17 @@
+services:
+  spotiflac:
+    image: ghcr.io/iassis/spotiflac:latest
+    container_name: spotiflac
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam # Change to your timezone
+    volumes:
+      - /var/lib/spotiflac:/config       # App settings and internal data
+      - /mnt/warehouse/incomplete:/downloads # Map this to your music library
+    ports:
+      - 3002:3001 # Access the Web GUI at https://localhost:3002
+    shm_size: "1gb"
+    security_opt:
+      - seccomp:unconfined
+    restart: unless-stopped
