@@ -675,6 +675,18 @@ run_directory = "stacks/slink"
 ##
 
 [[stack]]
+name = "spotiflac"
+[stack.config]
+server = "zouzoulinux"
+poll_for_updates = true
+auto_update = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/spotiflac"
+
+##
+
+[[stack]]
 name = "stirlingpdf"
 [stack.config]
 server = "ZouzouNAS2"
