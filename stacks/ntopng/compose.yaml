@@ -1,0 +1,19 @@
+services:
+  ntopng:
+    image: ntop/ntopng:stable
+    container_name: ntopng
+    restart: unless-stopped
+
+    network_mode: host
+
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+
+    volumes:
+      - /volume1/Workshop/docker/ntopng:/var/lib/ntopng
+
+    command:
+      - -i=eth0
+      - -w=10400
+      - -m=192.168.2.0/24
