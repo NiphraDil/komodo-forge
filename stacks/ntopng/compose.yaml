@@ -1,19 +1,42 @@
-services:
-  ntopng:
+#services:
+ # ntopng:
+ #   image: ntop/ntopng:latest
+ #   container_name: ntopng
+ #   restart: unless-stopped
+
+ #   network_mode: host
+
+ #   cap_add:
+ #     - NET_ADMIN
+ #     - NET_RAW
+
+ #   volumes:
+ #     - /volume1/Workshop/docker/ntopng:/var/lib/ntopng
+
+ #   command:
+ #     - -i=eth0
+ #     - -w=10400
+ #     - -m=192.168.2.0/24
+services: 
+ ntopng:
+    hostname: ntopng
     image: ntop/ntopng:latest
     container_name: ntopng
-    restart: unless-stopped
-
+    healthcheck:
+       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/3000' || exit 1
+       interval: 10s
+       timeout: 5s
+       retries: 3
+       start_period: 90s
+    mem_limit: 4g
+    cpu_shares: 768
     network_mode: host
-
+    command: --community
     cap_add:
       - NET_ADMIN
       - NET_RAW
-
+    security_opt:
+      - no-new-privileges:true
     volumes:
-      - /volume1/Workshop/docker/ntopng:/var/lib/ntopng
-
-    command:
-      - -i=eth0
-      - -w=10400
-      - -m=192.168.2.0/24
+      - /volume1/Workshop/docker/ntopng:/var/lib/ntopng:rw
+    restart: on-failure:5
