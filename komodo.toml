@@ -297,6 +297,17 @@ run_directory = "stacks/edge"
 ##
 
 [[stack]]
+name = "firefox"
+[stack.config]
+server = "zouzoulinux"
+poll_for_updates = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/firefox"
+
+##
+
+[[stack]]
 name = "freshrss"
 [stack.config]
 server = "ZouzouNAS2"
@@ -376,6 +387,7 @@ poll_for_updates = true
 git_account = "NiphraDil"
 repo = "NiphraDil/komodo-forge"
 run_directory = "stacks/immich"
+registry_account = "niphradil"
 environment = """
   # VARIABLE = value
 NODE_ENV = production
@@ -546,6 +558,18 @@ server = "ZouzouNAS2"
 git_account = "NiphraDil"
 repo = "NiphraDil/komodo-forge"
 run_directory = "stacks/npmplus"
+
+##
+
+[[stack]]
+name = "ntopng"
+[stack.config]
+server = "ZouzouNAS2"
+poll_for_updates = true
+auto_update = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/ntopng"
 
 ##
 
@@ -802,6 +826,18 @@ poll_for_updates = true
 git_account = "NiphraDil"
 repo = "NiphraDil/komodo-forge"
 run_directory = "stacks/wg-easy"
+
+##
+
+[[stack]]
+name = "wireshark"
+[stack.config]
+server = "ZouzouNAS2"
+poll_for_updates = true
+auto_update = true
+git_account = "NiphraDil"
+repo = "NiphraDil/komodo-forge"
+run_directory = "stacks/wireshark"
 
 ##
 
